@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار المبدأ الثالث: تحديد الحدود الحرجة (Critical Limits) والتحقق العلمي (Validation)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-gauge-high text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">كورس الـ HACCP - المحاضرة 7: المبدأ الثالث - الحدود الحرجة (Critical Limits) والتحقق (Validation)</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-navy/10 text-brand-navy rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-temperature-arrow-up text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة السابعة: الحدود الحرجة (Critical Limits) والتحقق العلمي (Validation)
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم التفاعلي المخصص للمبدأ الثالث من مبادئ الـ HACCP! يغطي هذا التقييم <span class="font-bold text-brand-navy">15 سؤالاً تفاعلياً شاملاً</span> يختبر فهمك لمفهوم الحد الحرج (Critical Limit)، التفريق بين وظروف التشغيل والحيود، التعامل مع المنتج غير الآمن عند الحيود، مفهوم التحقق العلمي (Validation)، ومصادر إثبات الفاعلية العلمية للحدود الحرجة.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">15 سؤالاً تفاعلياً</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-bullseye text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">مستوى التقييم</p>
+                        <p class="font-bold text-slate-800">المبدأ الثالث: Critical Limits & Validation</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ الاختبار الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 15</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 6.66%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للاختبار</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 15</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة الإجابات والحلول التفصيلية:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const quizData = [
+            {
+                question: "ما الأهمية المحورية لنقطة التحكم الحرجة (CCP) التي تم التأكيد عليها عند الانتقال لمفهوم الحدود الحرجة؟",
+                options: [
+                    "أنها أسهل مرحلة يُمكن إلغاؤها من جدول تحليل المخاطر عند الحاجة للتخفيض المالي.",
+                    "أنها تعتبر الخطوة الأخيرة التي يُعتمد عليها كلياً للسيطرة على الخطر وإبقائه تحت السيطرة.",
+                    "أنها مرحلة بصرية فقط لا تتطلب تحديد قيم رقمية أو قياسات دقيقة.",
+                    "أنها تخص النماذج المخصصة لإدارة المشتريات والمبيعات الدولية."
+                ],
+                correct: 1,
+                hint: "الـ CCP هي الملجأ الأخير للسيطرة؛ لذا فإن أي تجاوز للحدود المخصصة لها يعني مباشرة فقدان السيطرة على الخطر."
+            },
+            {
+                question: "ماذا يترتب مباشرة على حدوث «حيود (Deviation)» وتجاوز لمعايير الرقابة عند نقطة التحكم الحرجة (CCP)؟",
+                options: [
+                    "يُعتبر الخطر خارج السيطرة ويُعامل المنتج الناتج على أنه منتج غير آمن (Unsafe Product).",
+                    "يُستمر في بيع المنتج كالمعتاد مع تدوين ملاحظة بسيطة في سجل الاستلام.",
+                    "تتحول نقطة التحكم الحرجة تلقائياً إلى برنامج متطلبات أولية (PRP).",
+                    "يتم خفض سعر المنتج وعرضه في الأسواق كمنتج درجة ثانية."
+                ],
+                correct: 0,
+                hint: "فقدان السيطرة عند الـ CCP يجعل سلامة المنتج مجهولة أو مهددة، وبالتالي يتعين التحفظ عليه كمنتج غير آمن فوراً."
+            },
+            {
+                question: "ما هو التعريف العلمي والأكاديمي للحد الحرج (Critical Limit - CL) في نظام الـ HACCP؟",
+                options: [
+                    "المعيار الرقمي الفاصل بين التشغيل المقبول (العملية تحت السيطرة) والتشغيل غير المقبول (فقدان السيطرة).",
+                    "متوسط درجات الحرارة المسجلة خلال الشهور الستة الماضية بورشة الصيانة.",
+                    "أقصى طاقة إنتاجية يمكن للآلة تحقيقها خلال نوبتجيّة العمل الواحدة.",
+                    "التكلفة المالية القصوى المسموح بها لشراء أجهزة قياس درجات الحرارة."
+                ],
+                correct: 0,
+                hint: "الحد الحرج هو الخط الفاصل الحاسم الذي يقسم حالة التشغيل إلى زون مقبولة وآمنة وزون أخرى غير مقبولة وغير آمنة."
+            },
+            {
+                question: "في مثال بسترة العصير (75°م لمدة 10 ثوانٍ)، متى نعتبر عملياً أن عملية البسترة خرجت عن السيطرة ووقع حيود؟",
+                options: [
+                    "عندما ترتفع درجة الحرارة إلى 80°م.",
+                    "بمجرد انخفاض درجة الحرارة عن 75°م (مثلاً وصولها إلى 74.5°م).",
+                    "عندما تظل الحرارة ثابتة عند 75°م لمدة نصف ساعة.",
+                    "عند تغير لون العصير داخل المبدل الحراري."
+                ],
+                correct: 1,
+                hint: "الحد الأدنى المطلوب للحماية هو 75°م؛ فإذا انخفضت القيمة ولو بنصف درجة فقد الإجراء قدرته المضمونة على إبادة الميكروب."
+            },
+            {
+                question: "ما التصرف الفوري والواجب اتخاذه تجاه الشحنة أو المنتج عند اكتشاف وقوع حيود وانخفاض الحرارة عن الحد الحرج؟",
+                options: [
+                    "التخلص الفوري من الشحنة بإلقائها في النفايات دون فحص.",
+                    "حجز المنتج (Product Hold) وتوقيف تداوله لحين تقييم الموقف واتخاذ الإجراء التصحيحي المناسب.",
+                    "تعبئة المنتج مباشرة وإرساله للمستهلك مع التوصية بغليه بالمنزل.",
+                    "تغيير اسم المنتج إلى عصير طازج غير مبستر."
+                ],
+                correct: 1,
+                hint: "الإجراء التحفظي الأولي والضروري هو حجز الشحنة المنيعة لوقف تسرب منتج مشكوك في سلامته للأسواق."
+            },
+            {
+                question: "هل يقتصر الحد الحرج (Critical Limit) دائماً على أن يكون «حداً أدنى» فقط كما في الحرارة؟",
+                options: [
+                    "نعم، جميع الحدود الحرجة في القوانين الغذائية تكون حدوداً دنيا فقط.",
+                    "لا، قد يكون الحد الحرج حداً أدنى (كالحرارة)، أو حداً أقصى (كالرطوبة أو متبقيات الكيمياء)، أو نطاقاً محدداً (Range) كـ pH.",
+                    "نعم، لأن القياسات العليا تخص قسم تكاليف الإنتاج فقط.",
+                    "لا، الحد الحرج يكون دائماً مجرد وصف ظاهري بدون أرقام."
+                ],
+                correct: 1,
+                hint: "حسب نوع الخطر والعامل المقاس؛ كالرطوبة بالحبوب (حد أقصى لمنع الفطريات)، الحرارة (حد أدنى)، أو درجة الحموضة pH (حد محدد)."
+            },
+            {
+                question: "لماذا لا يُقبل وضع أو تحديد الحدود الحرجة (Critical Limits) بناءً على التقدير أو الخاطر الشخصي؟",
+                options: [
+                    "لأن ذلك يزيد من استهلاك الطاقة الكهربائية بالمصنع.",
+                    "لأن سلامة الغذاء تشترط الاستناد لدليل علمي وفني يثبت قدرة هذه القيمة الفعالة على إزالة الخطر أو خفضه.",
+                    "لأن الحدود الشخصية تسبب بطء حركة العمال في صالة الإنتاج.",
+                    "لأن المراجعين ينظرون فقط للشكل الخارجي للشهادات."
+                ],
+                correct: 1,
+                hint: "الحد الحرج يحمي أرواح المستهلكين؛ لذا يجب أن يبنى على حقيقة علمية مثبتة قاطعة تحجم الخطر بفاعلية أكيدة."
+            },
+            {
+                question: "ما هو المفهوم الجوهري لعملية «التحقق العلمي / إثبات الصلاحية (Validation)» في سلامة الغذاء؟",
+                options: [
+                    "التأكد المسبق بالحجة والأدلة العلمية والفنية من أن إجراء التحكم والحدود الحرجة قادران فعلياً على السيطرة على الخطر.",
+                    "المراجعة اليومية لسجلات الحضور والغياب الخاصة بفريق الجودة.",
+                    "قياس الوزن الصافي للعبوات للتأكد من مطابقتها للقوانين التجارية.",
+                    "الفحص البصري لنظافة الأرضيات والممرات قبل بدء العمل."
+                ],
+                correct: 0,
+                hint: "الـ Validation هو تقديم الدليل والبرهان العلمي (Evidence) على أن هذه الخلطة من (الحرارة + الزمن) كافية لإبادة الخطر."
+            },
+            {
+                question: "متى يجب أن تتم عملية إثبات الصلاحية والتحقق العلمي (Validation) بالنسبة للحد الحرِج؟",
+                options: [
+                    "بعد وقوع حادثة تسمم غذائي بالأسواق وتقييم الأضرار.",
+                    "مسبقاً قبل تطبيق الحد الحرج والبدء الفعلي في عملية الإنتاج والتصنيع.",
+                    "أثناء جولات التفتيش السنوية للجهات الخارجية فقط.",
+                    "بعد الانتهاء من بيع وتوزيع الشحنة الأولى بالكامل."
+                ],
+                correct: 1,
+                hint: "نثبت فاعلية وسلبيات الشيء قبل اعتماده في خطوط الإنتاج الحية (Validation comes BEFORE implementation)."
+            },
+            {
+                question: "ما هي المصادر المعتمدة والموثوقة التي يستند إليها فريق الهسب لإجراء عملية الـ Validation للحدود الحرجة؟",
+                options: [
+                    "المنشورات غير الموثوقة على وسائل التواصل الاجتماعي.",
+                    "التشريعات والقوانين الوطنية، المواصفات القياسية (كالأيزو والكودكس)، والأبحاث والدوريات العلمية المحكمة.",
+                    "الآراء الشخصية للعمال القدامى بخطوط الإنتاج دون تجارب مقاسة.",
+                    "كتالوجات الدعاية والتسويق الخاصة بالشركات المنافسة."
+                ],
+                correct: 1,
+                hint: "نستمد قوة الـ Validation من التشريعات (Legislation)، المواصفات (Standards)، المراجع الأكاديمية والتجارب المعملية الموثقة."
+            },
+            {
+                question: "ما الفرق الأساسي والفرق الجوهري بين «المتابعة / المراقبة (Monitoring)» و«التحقق العلمي (Validation)»؟",
+                options: [
+                    "Monitoring يثبت صحة القياسات قبل الإنتاج، بينما Validation يقيس الحرارة أثناء التشغيل.",
+                    "Validation يثبت علمياً أن الحد الحرج صحيح وقادر على السيطرة، بينما Monitoring يتأكد لحظياً أثناء التشغيل أننا نطبق الحد الحرج.",
+                    "لا يوجد أي فرق بين المصطلحين وهما كلمتان لمعنى واحد.",
+                    "Validation مسؤولية العمال بالصالة، و Monitoring مسؤولية الإدارة العليا فقط."
+                ],
+                correct: 1,
+                hint: "الـ Validation هو وضع المسطرة الصحيحة واستئناس العلم مسبقاً، أما الـ Monitoring فهو القياس المستمر والمتابعة اليومية."
+            },
+            {
+                question: "في مثال بسترة العصير، كيف أثبتت المصادر العلمية (Validation) اختيار درجة 75°م كحد حرج وليس 70°م؟",
+                options: [
+                    "لأن درجة 70°م أسرع في توفير السولار والغاز بالمصنع.",
+                    "لأن الدراسات والأبحاث الميكروبيولوجية أثبتت أن درجة 70°م لا تكفي لتحقيق خفض آمن ميكروبي لبكتيريا السالمونيلا والحيود عنها ينقل الممرضات.",
+                    "لأن لون العصير يتحول للون الأسبق عند 75°م.",
+                    "لأن الأجهزة لا تستطيع القراءة عند درجة 70°م."
+                ],
+                correct: 1,
+                hint: "الدليل العلمي أثبت أن 70°م تترك جزءاً حياً من البكتيريا الممرضة، بينما 75°م للمدة المحددة تضمن إبادة آمنة وفعالة."
+            },
+            {
+                question: "إذا لم يتوافر مرجع تشريعي أو مواصفة قياسية تحدد حداً حرجاً لخطر جديد في منتج ابتكاري، فكيف يُجري المصنع الـ Validation؟",
+                options: [
+                    "تُهمل خطوة تحديد الحد الحرج كلياً ويُنتج العصير بدون مراقبة.",
+                    "يُجري المصنع تجارب واختبارات علمية ومعملية موثقة (Validation Trials / Challenge Tests) مع هيئات علمية مختصة.",
+                    "يُحدد الرقم بناءً على تخمين مسؤول الجودة.",
+                    "تستورد الشركة عبوات جاهزة وتُعيد تعبئتها."
+                ],
+                correct: 1,
+                hint: "في حال غياب النصوص القانوية الجاهزة، نلجأ إلى الفحوصات والتجارب المعملية العلمية الموثقة لإثبات الفاعلية القاطعة."
+            },
+            {
+                question: "ما النتيجة الخطيرة المتوقعة عند تطبيق «حد حرج» غير مثبت صحته علمياً (Non-validated Critical Limit)؟",
+                options: [
+                    "انخفاض تكاليف الإنتاج وزيادة المبيعات.",
+                    "خطر مرور منتجات تظن المنشأة أنها آمنة بينما هي تحتوي على مخاطر ميكروبية أو كيميائية تهدد المستهلك.",
+                    "زيادة سرعة التعبئة والتغليف على السير.",
+                    "تحسين الطعم والنكهة للفاكهة."
+                ],
+                correct: 1,
+                hint: "تطبيق حدود وهمية أو غير مثبتة يمنح المصنع شعوراً زائفاً بالأمان، مما قد يسبب كوارث وتسمماً غذائياً للمستهلكين."
+            },
+            {
+                question: "بعد إتمام تحديد الحدود الحرجة وإثبات فاعليتها علمياً (التحقق/Validation)، ما المبدأ الرابع التالي في الـ HACCP؟",
+                options: [
+                    "المبدأ الرابع: وضع إجراءات التصحيح والتحفظ على الشحنات.",
+                    "المبدأ الرابع: إنشاء نظام للمتابعة والمراقبة (Monitoring System) لنقاط التحكم الحرجة.",
+                    "المبدأ الرابع: أرشفة المستندات والتخلص من السجلات القديمة.",
+                    "المبدأ الرابع: إعادة إجراء تحليل المخاطر من البداية."
+                ],
+                correct: 1,
+                hint: "المبدأ الرابع من مبادئ الهسب هو وضع نظام مراقبة ومتابعة (Monitoring) للتأكد من أننا نلتزم بالحدود الحرجة طوال التشغيل."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 12) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-award text-5xl"></i>`;
+                resultTitle.innerText = "إتقان رائع للحدود الحرجة والتحقق! 🎯";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "تهانينا! لقد أتقنت تماماً المبدأ الثالث، وفهمت الفروق الدقيقة بين الحد الحرج وظروف الحيود، وكيفية إجراء التحقق العلمي (Validation) واستنباط الدلائل الموثوقة!";
+            } else if (score >= 9) {
+                iconContainer.className = "w-24 h-24 bg-cyan-100 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-thumbs-up text-5xl"></i>`;
+                resultTitle.innerText = "نتيجة ممتازة! أداء قوي 👍";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "اجتزت التقييم بنجاح. نوصيك بمراجعة الأسئلة التي أخطأت بها للتمكن التام من مصادر الـ Validation والفرق بين Monitoring و Validation.";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت التقييم! يُنصح بمراجعة الشرح 📖";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-amber-800 mb-2";
+                resultSubtitle.innerText = "فهم الحدود الحرجة والتحقق العلمي يتطلب استيعاب دقيق للعلاقة بين الأرقام والأساس العلمي. يُفضل إعادة مشاهدة فيديو المحاضرة ثم إعادة الاختبار.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

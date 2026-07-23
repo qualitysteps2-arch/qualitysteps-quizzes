@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار المبدأ السادس: الصلاحية والتحقق (Validation and Verification)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-clipboard-check text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">كورس الـ HACCP - المحاضرة 10: المبدأ السادس - الصلاحية والتحقق (Validation & Verification)</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-navy/10 text-brand-navy rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-vial-circle-check text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة العاشرة: الصلاحية والتحقق (Validation & Verification)
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم التفاعلي المخصص للمبدأ السادس من مبادئ نظام الـ HACCP! يغطي هذا التقييم <span class="font-bold text-brand-navy">13 سؤالاً تفاعلياً شاملاً</span> يختبر فهمك للفروق الجوهرية بين الصلاحية والتحقق، الأدلة العلمية والفنية، المراجعة السنوية وإعادة التقييم (Revalidation)، أنشطة التحقق الأربعة، المعايرة، واستقلالية مسؤول التحقق.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">13 سؤالاً تفاعلياً</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-bullseye text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">مستوى التقييم</p>
+                        <p class="font-bold text-slate-800">المبدأ السادس: Validation & Verification</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ الاختبار الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 13</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 7.69%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للاختبار</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 13</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة الإجابات والحلول التفصيلية:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const quizData = [
+            {
+                question: "ما هو الفرق الرئيسي والجوهر المفاهيمي بين عمليتي الصلاحية (Validation) والتحقق (Verification) في المبدأ السادس؟",
+                options: [
+                    "الصلاحية تعني توثيق السجلات ورقياً، بينما التحقق يعني أخذ عينات ميكروبية فقط.",
+                    "الصلاحية تتأكد مسبقاً من قدرة الخطة على السيطرة بناءً على الأدلة، بينما التحقق يتأكد دورياً من تنفيذ الخطة فعلياً بعد التطبيق.",
+                    "الصلاحية يتم إجراؤها بواسطة مراجع خارجي فقط، بينما التحقق يقتصر على العمال داخل المصنع.",
+                    "لا يوجد فرق بينهما وهما مصطلحان مترادفان يعبران عن نفس الإجراء اللحظي."
+                ],
+                correct: 1, // B
+                hint: "الصلاحية تُجيب عن: هل الخطة المصممة قادرة على الحماية قبل التنفيذ؟ بينما التحقق يُجيب عن: هل الخطة تُنفذ فعلاً بشكل يومي كما خططنا؟"
+            },
+            {
+                question: "متى يُنفذ الجزء الأول من عملية «إثبات الصلاحية (Validation)» وما الهدف منه؟",
+                options: [
+                    "عند استلام أول شحنة للمستهلك في الأسواق.",
+                    "أثناء إعداد خطة الهسب عند تحديد إجراءات التحكم والحدود الحرجة/معايير العمل لضمان استنادها لدليل علمي أو فني.",
+                    "بعد مرور ثلاث سنوات من تشغيل خط الإنتاج وتصدير الشحنات.",
+                    "عند توظيف موظف جديد في قسم المبيعات."
+                ],
+                correct: 1, // B
+                hint: "الجزء الأول يركز على تقديم الإثبات العلمي/الفني لقدرة إجراءات التحكم والحدود الحرجة المختارة على السيطرة قبل التشغيل."
+            },
+            {
+                question: "ما المقصود بـ «الدليل الفني (Technical Evidence)» المستخدم في إثبات الصلاحية، ومتى يلجأ المصنع لإجرائه؟",
+                options: [
+                    "استشارات قانونية من مكتب محاماة خارجي.",
+                    "اختبارات وتجارب داخلية بالمصنع لإثبات الكفاءة تحت الظروف التشغيلية الواقعية إذا اختلفت عن ظروف الأبحاث المنشورة.",
+                    "قوائم أسعار الآلات والمعدات المتاحة لدى الموردين.",
+                    "كتالوج التعبئة والتغليف المرفق مع المنتجات."
+                ],
+                correct: 1, // B
+                hint: "إذا اختلفت نوعية المعدات، تركيبة المنتج، أو ظروف التشغيل عن الدراسات المنشورة، وجب إجراء تجارب داخلية للمصنع."
+            },
+            {
+                question: "كيف يُنفذ الجزء الثاني من عملية الصلاحية (Validation) بعد كتمال إعداد الخطة وقبل اعتمادها النهائي؟",
+                options: [
+                    "بتقييم الخطة كمنظومة متكاملة أثناء التشغيل المبدئي الفعلي وجمع أدلة تثبت السيطرة تحت ظروف الإنتاج الحقيقية.",
+                    "بطباعة الخطة وتوزيعها على كافة العاملين بالشركة بدون تجريب.",
+                    "بإلغاء المراقبة الميدانية والاعتماد على توقعات فريق الجودة.",
+                    "بطلب استثناء قانوني من الجهات الرقابية."
+                ],
+                correct: 0, // A
+                hint: "تُقيم الخطة كاملة كشبكة متكاملة من تحديد المخاطر حتى السجلات عبر التشغيل المبدئي للخط وجمع التحاليل الحقيقية."
+            },
+            {
+                question: "لماذا يُشترط التوثيق والاحتفاظ بالأدلة والمراجع المستند عليها في عملية الصلاحية (Validation)؟",
+                options: [
+                    "لأنها متطلب شكلي لا أهمية له في التشغيل العملي.",
+                    "للرجوع إليها عند التساؤل المستقبلي عن سبب اختيار القيم ولإثبات الأساس العلمي أمام المراجعين والجهات الرقابية.",
+                    "لتقليل استهلاك الطاقة الكهربائية بالمصنع.",
+                    "لتقدير رواتب أعضاء فريق الهسب بناءً على عدد الصفحات."
+                ],
+                correct: 1, // B
+                hint: "التوثيق يضمن حفظ المعرفة المؤسسية ويقدم الدليل للمراجعين (Auditors) بأن الحدود مبنية على أسس علمية متينة."
+            },
+
+            {
+                question: "متى يجب على فريق الـ HACCP إجراء مراجعة دورية (Review) لخطة الهسب المعتمدة؟",
+                options: [
+                    "مرة كل 5 سنوات فقط بغض النظر عن أي تغييرات.",
+                    "عند تغيير مدير التسويق بالشركة فقط.",
+                    "بشكل دوري مرة كل سنة على الأقل، أو فور حدوث أي تغيير في المنتج، المكونات، المعدات، أو ظهور مخاطر تشريعية/جديدة.",
+                    "فقط عند طلب المستهلك النهائي ذلك."
+                ],
+                correct: 2, // C
+                hint: "الصلاحية ليست أبدية؛ لذا تجرى مراجعة دورية سنوية أو فورية عند طرؤ تغييرات مؤلفة في العملية الإنتاجية."
+            },
+            {
+                question: "إذا أظهرت المراجعة الدورية وجود تعديلات جوهرية لها تأثير محتمل على سلامة الغذاء، ما الإجراء الواجب اتخاذه؟",
+                options: [
+                    "تجاهل التعديلات والاستمرار بالخطة القديمة.",
+                    "إجراء إعادة اختبار للصلاحية (Revalidation) وتوثيق الأدلة العلمية والفنية الجديدة في تقرير رسمي.",
+                    "إلغاء خطة الهسب بالكامل والبدء من الصفر.",
+                    "تغيير اسم المنتج النهائى فقط دون تعديل الخطة."
+                ],
+                correct: 1, // B
+                hint: "التعديل المستحدث يتطلب Revalidation للتأكد من أن النظام التراكمي ما زال قادراً على ضبط المخاطر بفاعلية."
+            },
+            {
+                question: "أي من الأنشطة التالية يُمثل نشاطاً رئيسياً من الأنشطة الأربعة لعملية التحقق (Verification)؟",
+                options: [
+                    "تحديد سعر البيع للجمهور.",
+                    "مراجعة سجلات المراقبة، المراجعات الداخلية (Internal Audits)، معايرة الأجهزة، وأخذ عينات وتحليلها.",
+                    "تصميم الغلاف الخارجي للمنتج.",
+                    "شراء خامات تشغيل من الموردين."
+                ],
+                correct: 1, // B
+                hint: "أنشطة التحقق الأربعة تشمل: السجلات، المراجعات الداخلية، المعايرة، والتحاليل المعملية الدورية للمنتج."
+            },
+            {
+                question: "لماذا تُعتبر «معايرة أجهزة القياس (Calibration)» ركناً أساسياً وجوهرياً في عملية التحقق؟",
+                options: [
+                    "لأن القراءات الصادرة من جهاز غير متعاير تكون خاطئة، مما يجعل السجلات والقرارات المترتبة عليها مشكوكاً في صحتها.",
+                    "لأن المعايرة تزيد من سرعة خط الإنتاج بشكل مباشر.",
+                    "لأنها بديل كامل عن عملية المراقبة اليومية.",
+                    "لأنها تخفض أجور الفنيين والعمال بالصالة."
+                ],
+                correct: 0, // A
+                hint: "إذا كان التيرمومتر أو الميزان يقرأ خطأً، ستكون السجلات مظللة والقرارات المبنية عليها خطرة على سلامة المنتج."
+            },
+
+            {
+                question: "ما هو الشرط التنظيمي والإداري المهم بالنسبة للشخص الذي يقوم بعملية التحقق (Verification)؟",
+                options: [
+                    "أن يكون هو نفس الشخص الذي يقوم بالمراقبة اليومية لسهولة العمل.",
+                    "أن يكون شخصاً مستقلاً ومختلفاً عن الشخص المسؤول عن المراقبة اليومية أو تنفيذ الإجراء التصحيحي.",
+                    "أن يكون عضواً من خارج الدولة دائماً.",
+                    "أن يكون العامل المسؤول عن النظافة والتطهير بالصالة."
+                ],
+                correct: 1, // B
+                hint: "الاستقلالية تمنع التغاضي عن الأخطاء الشخصية وتضمن النزاهة والموضوعية في التقييم والتحسين."
+            },
+            {
+                question: "في خطوة البسترة، أي من التصرفات التالية يُعتبر نشاط «مراقبة (Monitoring)» وليس «تحقق (Verification)»؟",
+                options: [
+                    "معايرة حساس الحرارة بشكل شهري.",
+                    "متابعة وتسجيل درجة الحرارة بشكل مستمر ودوري كل ساعة أثناء التشغيل.",
+                    "مراجعة سجل الحرارة مرة يومياً بواسطة مشرف الجودة.",
+                    "أخذ عينة في نهاية التشغيلة للتحليل الميكروبي المعملي."
+                ],
+                correct: 1, // B
+                hint: "المراقبة ترتبط بالتشغيل اللحظي المستمر أو المتقارب لاكتشاف الحيود فوراً، بينما البقية هي أنشطة تحقق."
+            },
+            {
+                question: "في مثال كاشف المعادن (Metal Detector)، كيف يطبق إجراء التحقق (Verification) عملياً؟",
+                options: [
+                    "بصيانة السير الناقل مرة كل سنتين.",
+                    "باختبار كفاءة الجهاز بقطع اختبار قياسية (Standard Test Pieces) دورياً ومراجعة سجلات الاختبار يومياً.",
+                    "بالاعتماد على ملاحظات المستهلكين بعد بيع المنتج.",
+                    "بإيقاف الجهاز كلياً واختبار العبوات يدوياً."
+                ],
+                correct: 1, // B
+                hint: "التحقق يختبر أداء الجهاز بقطع اختبار معروفة (فولاذ، غير حديدي، أستانلس) ويراجع السجلات بصفة منتظمة."
+            },
+
+            {
+                question: "ما الفرق الجوهري في التكرارية والهدف بين المراقبة (Monitoring) والتحقق (Verification)؟",
+                options: [
+                    "المراقبة تتم سنوياً والتحقق يتم كل دقيقة.",
+                    "المراقبة عملية لحظية مستمرة لاكتشاف الحيود فوراً، بينما التحقق يتم على فترات أطول لتقييم كفاءة النظام ككل.",
+                    "المراقبة تهدف لإلغاء الحاجة للسجلات، بينما التحقق يهدف لكتابتها فقط.",
+                    "لا يوجد أي فرق في التكرار أو الهدف بينهما."
+                ],
+                correct: 1, // B
+                hint: "المراقبة تشغيلية لحظية ومباشرة، بينما التحقق تقييمي دوري شامل للتأكد من أن النظام ككل يعمل بفاعلية."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 11) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-award text-5xl"></i>`;
+                resultTitle.innerText = "إتقان رائع للصلاحية والتحقق! 🎯";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "تهانينا! لقد أتقنت المبدأ السادس تماماً، واستوعبت الفروق الجوهرية بين Validation و Verification، وأدلة الإثبات العلمي، والمعايرة، وأنشطة التحقق الأربعة والاستقلالية المطلوب للمسؤول!";
+            } else if (score >= 8) {
+                iconContainer.className = "w-24 h-24 bg-cyan-100 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-thumbs-up text-5xl"></i>`;
+                resultTitle.innerText = "نتيجة ممتازة! أداء قوي 👍";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "اجتزت التقييم بنجاح. نوصيك بمراجعة الأسئلة التي أخطأت بها لتعزيز استيعاب الفروق بين المراقبة اليومية وأنشطة التحقق الدورية.";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت التقييم! يُنصح بمراجعة الشرح 📖";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-amber-800 mb-2";
+                resultSubtitle.innerText = "فهم المبدأ السادس يتطلب التمييز بين إثبات الصلاحية المسبق والتحقق الميداني المستمر والتجارب الفنية. يُفضل إعادة مشاهدة فيديو المحاضرة ثم إعادة الاختبار.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

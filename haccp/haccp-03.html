@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار المبدأ الأول: تحديد المخاطر (Hazard Identification)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-magnifying-glass-chart text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">كورس الـ HACCP - المحاضرة 3: المبدأ الأول - تحديد المخاطر (Hazard Identification)</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-navy/10 text-brand-navy rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-shield-virus text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة الثالثة: المبدأ الأول - تحديد المخاطر (Hazard Identification)
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم التفاعلي المخصص للمحاضرة الثالثة! يغطي هذا التقييم <span class="font-bold text-brand-navy">15 سؤالاً تفاعلياً شمولياً</span> يختبر فهمك للفروق بين الخطر (Hazard) والخطورة (Risk)، أنواع المخاطر، حساب درجة الخطورة (Risk Score)، حالات ذكر الخطر في جدول التقييم، والتطبيق العملي على مرحلتي الاستلام والتخزين.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">15 سؤالاً تفاعلياً</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-crosshairs text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">مستوى التقييم</p>
+                        <p class="font-bold text-slate-800">المبدأ الأول: تحديد المخاطر</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ الاختبار الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 15</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 6.66%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للاختبار</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 15</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة الإجابات والحلول التفصيلية:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const quizData = [
+            {
+                question: "ما الفرق الجوهري بين الخطر (Hazard) والخطورة (Risk) وفقاً لما تم توضيحه في الشرح؟",
+                options: [
+                    "الخطر يُحسب بفرص حدوثه رياضيًا، بينما الخطورة تعني وجود مواد كيميائية فقط.",
+                    "الخطر (Hazard) هو العامل المُلوث المسبب للضرر، بينما الخطورة (Risk) هي نتاج شدة تأثير هذا الخطر واحتمالية حدوثه.",
+                    "الخطر ينطبق على البكتيريا فقط بينما الخطورة تنطبق على الأجسام الغريبة المادية.",
+                    "لا يوجد أي فرق بينهما وهما مصطلحان متطابقان تماماً في المواصفات القياسية الدولية."
+                ],
+                correct: 1,
+                hint: "الخطر هو مصدر الضرر كالبكتيريا أو الأحجار، بينما الخطورة هي حاصل تقدير شدة التأثير (Severity) × احتمالية الحدوث (Probability)."
+            },
+            {
+                question: "كيف يُصنف «الخطر غير الحلال (Non-Halal Hazard)» في أنظمة سلامة الغذاء؟",
+                options: [
+                    "يُعتبر خطراً كيميائياً أساسياً ضمن تصنيفات الهيئة الدولية للكودكس (Codex).",
+                    "يُصنف كخطر بيولوجي ناتج عن التخمر الميكروبي في المنتجات.",
+                    "يندرج رسمياً تحت تصنيف المخاطر الفيزيائية في المواصفات الدولية ISO 22000.",
+                    "ليس ضمن التصنيف العلمي الرسمي في المراجع (كالـ Codex أو ISO)، ولكنه متطلب عميل أساسي يجب مراعاته."
+                ],
+                correct: 3,
+                hint: "رغم أهميته البالغة لمتطلبات العملاء والأسواق الإسلامية، إلا أنه ليس جزءاً من التقسيم الأكاديمي الثلاثي المباشر (فيزيائي، كيميائي، بيولوجي)."
+            },
+            {
+                question: "يُعد سم «الباتولين (Patulin)» من المخاطر الكيميائية الهامة في عصير البرتقال، فما هو مصدره الأساسي؟",
+                options: [
+                    "سم فطري (Mycotoxin) تفرزه بعض أنواع الفطريات التي تنمو على الثمار التالفة أو المتعفنة.",
+                    "مادة كيميائية سامة تفرزها البكتيريا الممرضة أثناء التعبئة.",
+                    "بقايا مبيدات حشرية تُصش بها الأشجار في المزرعة قبل الحصاد.",
+                    "معدن ثقيل يتسرب من مياه الري الملوثة إلى داخل الثمرة."
+                ],
+                correct: 0,
+                hint: "الباتولين هو سم فطري (Mycotoxin) يرتبط وجوده بالثمار المصابة بالتعفن والأنسجة التالفة."
+            },
+            {
+                question: "ما السبب الرئيسي الذي يدفع فريق الهسب إلى حساب درجة الخطورة (Risk Score) لكل خطر؟",
+                options: [
+                    "إلغاء الحاجة لتدريب العمال في صالات الإنتاج وتوفير الوقت.",
+                    "توفير التكاليف المالية عبر التخلي عن الفحوصات المعملية اليومية.",
+                    "فهم درجة الخطر وتحديد الأولويات لتوجيه الموارد المتاحة نحو الإجراءات الأكثر أهمية.",
+                    "تجنب المراجعات القانونية الصادرة من الجهات والرقابات الحكومية."
+                ],
+                correct: 2,
+                hint: "الموارد ليست لا نهائية، لذا يساعدنا الـ Risk Score في تحديد المخاطر ذات الأولوية وتطبيق إجراءات تحكم تناسب شدتها."
+            },
+            {
+                question: "يتكون المبدأ الأول للهسب (تحليل المخاطر - Hazard Analysis) من ثلاث خطوات متسلسلة، ما هي؟",
+                options: [
+                    "تحديد المخاطر (Hazard Identification)، ثم تقييم المخاطر (Risk Assessment)، ثم وضع إجراءات التحكم (Control Measures).",
+                    "رسم خريطة التدفق، ثم تحديد النقاط الحرجة (CCPs)، ثم التوثيق.",
+                    "قياس درجة الحرارة، ثم اختيار الموردين المعتمدين، ثم معايرة الأجهزة.",
+                    "الفحص الظاهري للمواد، ثم التحليل الميكروبي، ثم تسعير المنتج النهائي."
+                ],
+                correct: 0,
+                hint: "نبدأ بتحديد وتأكيد وجود الخطر أولاً، ثم نقيّم درجة خطورته، وأخيراً نضع الإجراء المناسب للسيطرة عليه."
+            },
+            {
+                question: "ما الفائدة المباشرة للاستعانة بالقوانين والتشريعات المحلية والرقابية أثناء خطوة تحديد المخاطر؟",
+                options: [
+                    "تحديد أسعار بيع المنتجات النهائية في السوق المحلي.",
+                    "زيادة عدد أعضاء فريق الهسب الداخلي بشكل إجباري.",
+                    "الإعفاء التام للمنشأة من تطبيق برامج المتطلبات الأولية (PRPs).",
+                    "معرفة المخاطر الإلزامية والحدود المسموح بها قانوناً (كمتبقيات المبيدات أو الأفلاتوكسين) لضمان السلامة والموقف القانوني."
+                ],
+                correct: 3,
+                hint: "التشريعات واللوائح تُعرف المصنع بالمخاطر الإلزامية والحدود المسموح بها لحماية صحة المستهلك والالتزام بالقانون."
+            },
+            {
+                question: "تُذكر المخاطر في جدول تحليل المخاطر في ثلاث حالات أساسية فقط، ما هي؟",
+                options: [
+                    "عند بداية وردية العمل، وعند غسيل المعدات، وعند تغيير نوع المنتج.",
+                    "عند ظهور الخطر لأول مرة، أو عند وجود احتمال لزيادته، أو عند وجود خطوة تتحكم فيه أو تقلله.",
+                    "في مرحلة الاستلام، وفي مرحلة التعبئة، وفي مرحلة الشحن الخارجي فقط.",
+                    "عند استخدام المواد الخام المستوردة فقط دون استخدام المواد المحلية."
+                ],
+                correct: 1,
+                hint: "لا نكرر ذكر الخطر في الجدول إلا إذا ظهر لأول مرة، أو كان هناك احتمال لتفاقمه، أو كانت الخطوة وسيلة لمعالجته وإزالته."
+            },
+            {
+                question: "لماذا لم يتم إعادة ذكر خطر الأجسام الغريبة (الأحجار والرمال) في خطوة «تخزين البرتقال» رغم وجوده في «الاستلام»؟",
+                options: [
+                    "لأن الأجسام الغريبة تختفي تلقائياً عند وضع الفاكهة في المخازن المبردة.",
+                    "لأن خطوة التخزين تقوم بتفتيت الأحجار والرمال وتحويلها لمواد ناعمة غير ضارة.",
+                    "لأن الخطر ليس جديداً، ولن يزداد أثناء التخزين، كما أن التخزين ليس خطوة مصممة للتحكم في الأجسام الغريبة أو إزالتها.",
+                    "لأن مواصفة الهسب تمنع كتابة المخاطر الفيزيائية في خطوة التخزين نهائياً."
+                ],
+                correct: 2,
+                hint: "التخزين لا يزيل الأحجار ولا يزيد من كميتها، والخطر تم تسجيله سابقاً عند الاستلام، فلا داعي لتكراره كتابياً."
+            },
+            {
+                question: "تُعد المعادن الثقيلة (مثل الرصاص والكادميوم) من المخاطر الكيميائية في البرتقال المُستلم، ما سبب خطورتها الصحية؟",
+                options: [
+                    "لأنها مواد تراكمية تتجمع في جسم الإنسان مع الوقت وتسبب مشاكل صحية خطيرة.",
+                    "لأنها تسبب التسمم الغذائي الفوري المباشر خلال دقائق معدودة من التناول.",
+                    "لأنها تؤثر فقط على طعم ولون العصير دون أي تأثير على صحة الإنسان.",
+                    "لأنها تتحول مباشرة إلى بكتيريا ممرضة عند ارتفاع درجة الحرارة."
+                ],
+                correct: 0,
+                hint: "خطورة المعادن الثقيلة تكمن في خصائصها التراكمية (Cumulative Effect) داخل أجهزة الجسم على المدى الطويل."
+            },
+            {
+                question: "لماذا تم إعادة ذكر خطر الأجسام الغريبة (كالرمال والأحجار) في خطوتي «الفرز» و«الغسيل»؟",
+                options: [
+                    "لأن الفرز والغسيل يتسببان في توليد أجسام غريبة جديدة داخل خط الإنتاج.",
+                    "لأن القوانين تفرض تكرار جميع المخاطر في كل خطوات العملية دون استثناء.",
+                    "للتحذير من أن هذه الخطوات تزيد من نسبة التلوث الفيزيائي في الثمار.",
+                    "لأن كلاً من الفرز والغسيل يُعتبران خطوتي تحكم (Control Measures) تساهمان في اكتشاف الخطر وإزالته أو تقليله."
+                ],
+                correct: 3,
+                hint: "الفرز والغسيل خطوتان مصممتان عملياً للتخلص من العوالق والأجسام الغريبة وإزالتها."
+            },
+            {
+                question: "ما الخطر الكيميائي المتوقع «زيادته وتفاقمه» أثناء خطوة تخزين البرتقال في حال سوء التهوية وارتفاع الرطوبة؟",
+                options: [
+                    "زيادة نسبة بقايا المبيدات الحشرية على القشرة الخارجية.",
+                    "ارتفاع تركيز المعادن الثقيلة كالكادميوم والرصاص.",
+                    "زيادة تركيز سم الباتولين (Patulin) نتيجة استمرار نمو الفطريات على الثمار التالفة.",
+                    "تكون مواد بلاستيكية جديدة داخل ثمار البرتقال."
+                ],
+                correct: 2,
+                hint: "سوء التخزين والحرارة/الرطوبة المناسبة يحفزان نمو الأعفان والفطريات، مما يرفع إنتاج وافراز سم الباتولين."
+            },
+            {
+                question: "لماذا يُفضل كتابة المخاطر العامة (كالتلوث من أيدي العمال أو الهواء) في مرحلة «التعبئة والتغليف» بجدول الهسب؟",
+                options: [
+                    "لأن عمال التعبئة هم الوحيدون الذين لا يطبقون قواعد النظافة الشخصية.",
+                    "لأنه لو حدث تلوث ثانوي في مرحلة التعبئة، فلن تكون هناك خطوة تصنيعية تالية قادرة على التخلص منه.",
+                    "لأن القوانين تمنع تطبيق برامج المتطلبات الأولية (PRPs) في منطقة التعبئة.",
+                    "لأن مواد التعبئة والتغليف تُصنع دائماً من مواد ملوثة ميكروبيولوجياً."
+                ],
+                correct: 1,
+                hint: "التعبئة هي المرحلة الأخيرة تقريباً، وأي تلوث ثانوي يحدث فيها سيتجه مباشرة للمستهلك دون وجود خطوة معالجة بعدية."
+            },
+            {
+                question: "كيف يتم التعامل مع المخاطر العامة (ككسر لمبات الإضاءة أو سقوط المتعلقات الشخصية) عبر الخطوط الإنتاجية؟",
+                options: [
+                    "تُكتب وتُكرر في جدول تحليل المخاطر لجميع خطوات التصنيع بلا استثناء.",
+                    "يتم تجاهلها تماماً لعدم أهميتها في سلامة الغذاء.",
+                    "تُحل فقط عن طريق الاستعانة ببيوت خبرة أجنبية خارج المصنع.",
+                    "يُتحكم فيها بشكل أساسي عبر برامج المتطلبات الأولية (PRPs)، وتُذكر في الجدول للمراحل الحرجة فقط."
+                ],
+                correct: 3,
+                hint: "برامج الـ PRPs (كالنظافة الشخصية والصيانة الوقائية) هي خط الدفاع الأول ضد المخاطر العامة، منعاً لتضخيم جدول الهسب."
+            },
+            {
+                question: "ما هو المبدأ الصحيح عند الاستعانة بـ «خبراء خارجيين» لمساعدة المصنع في تحديد المخاطر؟",
+                options: [
+                    "يقدم الخبير الاستشارة والخبرة الفنية، بينما يظل الفريق الداخلي هو المسئول الأول عن تنفيذ وتطبيق النظام.",
+                    "يتولى الخبير الخارجي إدارة المصنع بالكامل ويُلغى دور مدير سلامة الغذاء.",
+                    "يصبح الخبير الخارجي هو المسئول القانوني الوحيد أمام الجهات الرقابية.",
+                    "يُمنع الخبير الخارجي من الاطلاع على سجلات الشكاوى أو خطوط الإنتاج."
+                ],
+                correct: 0,
+                hint: "الاستعانة ببيت خبرة أو خبير خارجي تعزز كفاءة الدراسة، ولكنها لا تعفي الفريق الداخلي من مسؤوليته الكاملة عن التطبيق."
+            },
+            {
+                question: "ما الوسائل التي يعتمد عليها فريق الهسب أثناء مرحلة «تحديد المخاطر (Hazard Identification)» لتحديد المخاطر الشاملة؟",
+                options: [
+                    "الاعتماد فقط على التخمين الفردي لرئيس مجلس الإدارة.",
+                    "الاقتصار على قراءة الإعلانات المنافسة في السوق المحلي.",
+                    "العصف الذهني الجماعي، وسجلات الشكاوى وحالات عدم المطابقة السابقة، والقوانين والتشريعات المحلية والرقابية.",
+                    "الاستغناء عن السجلات القديمة والتركيز فقط على الأفكار الشفهية."
+                ],
+                correct: 2,
+                hint: "الفريق يجمع بين التفكير الجماعي (Brainstorming)، والسجلات التاريخية للمنشأة، والتكاليف واللوائح القانونية الإلزامية."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 12) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-award text-5xl"></i>`;
+                resultTitle.innerText = "أداء استثنائي وتطبيقي رائع! 👏";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "تهانينا! لقد أظهرت استيعاباً كاملاً لمفهوم تحديد المخاطر (Hazard Identification)، والفرق بين الخطر والخطورة، وحالات ذكر المخاطر في جداول التقييم!";
+            } else if (score >= 9) {
+                iconContainer.className = "w-24 h-24 bg-cyan-100 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-thumbs-up text-5xl"></i>`;
+                resultTitle.innerText = "نتيجة جيدة جداً! محاولة موفقة 👍";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "لقد اجتزت التقييم بنجاح. يمكنك مراجعة الأسئلة التي أخطأت بها في الأسفل لتثبيت طريقة تفكير فريق الهسب في تحليل المخاطر.";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت التقييم! يُوصى بمراجعة المحاضرة 📖";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-amber-800 mb-2";
+                resultSubtitle.innerText = "مرحلة تحديد المخاطر هي حجر الأساس لكل مبادئ الهسب التالية. نوصيك بمراجعة فيديو الشرح والمراجعة أدناه للحصول على الدرجة النهائية.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

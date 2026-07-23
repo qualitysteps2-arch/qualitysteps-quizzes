@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار المبدأ الثاني: تحديد نقاط التحكم الحرجة (CCPs) وأشجار القرار</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-sitemap text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">كورس الـ HACCP - المحاضرة 6: المبدأ الثاني - نقاط التحكم الحرجة (CCPs) وأشجار القرار</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-navy/10 text-brand-navy rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-diagram-project text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة السادسة: تحديد نقاط التحكم الحرجة (CCPs) وأشجار القرار
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم التفاعلي المخصص للمبدأ الثاني من مبادئ الـ HACCP! يغطي هذا التقييم <span class="font-bold text-brand-navy">15 سؤالاً تفاعلياً تطبيقا وشمولياً</span> يختبر فهمك لمفهوم الـ CCP، المقارنة بين شجرة الكودكس (Codex 2022) وشجرة الـ FSSC / ISO 22000، التمييز بين PRPs و OPRPs و CCPs، وإتقان تطبيق أسئلة الشجرة على الأمثلة العملية (استلام السكر، استلام البرتقال، الفرز اليدوي/الإلكتروني، والبسترة).
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">15 سؤالاً تفاعلياً</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-bullseye text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">مستوى التقييم</p>
+                        <p class="font-bold text-slate-800">المبدأ الثاني: CCPs & Decision Trees</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ الاختبار الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 15</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 6.66%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للاختبار</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 15</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة الإجابات والحلول التفصيلية:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const quizData = [
+            {
+                question: "ما هو التعريف العلمي والأكاديمي التخصصي لنقطة التحكم الحرجة (Critical Control Point - CCP)؟",
+                options: [
+                    "نقطة أو مرحلة في العملية التصنيعية بنطبق فيها إجراء تحكم حاسم يمنع الخطر أو يقضي عليه أو يقلله لمستوى مقبول، وفقدان السيطرة عليها يجعل المنتج غير آمن مباشرة.",
+                    "أي خطوة داخل المصنع تُجرى فيها عمليات تنظيف ومتابعة يومية من قبل العمال في صالة الإنتاج.",
+                    "الأجهزة والمعدات المعقدة المكلفة فقط التي تُستخدم في الفحوصات الميكروبيولوجية بالمعامل المركزية.",
+                    "النماذج الورقية الموثقة التي تُسند لإدارة المبيعات من أجل تلبية متطلبات التسويق الدولي."
+                ],
+                correct: 0,
+                hint: "الـ CCP نقطة حاسمة جداً؛ الفشل في السيطرة عليها يترتب عليه مباشرة وصول منتج غير آمن للمستهلك."
+            },
+            {
+                question: "ما الفرق الجوهري والأساسي بين المبدأ الأول (تحليل المخاطر) والمبدأ الثاني (تحديد الـ CCPs)؟",
+                options: [
+                    "المبدأ الأول يختص بالمنتجات السائلة فقط، بينما المبدأ الثاني يختص بالمنتجات الصلبة.",
+                    "المبدأ الأول يُقيم المخاطر نفسها ونحدد لها إجراءات التحكم، بينما المبدأ الثاني يُقيم إجراءات التحكم المرتبطة بالمخاطر المهمة لنحدد هل تتصنف CCP أم لا.",
+                    "المبدأ الأول يعتمد على السجلات الورقية، بينما المبدأ الثاني يعتمد على الرأي الفردي لمدير الجودة.",
+                    "المبدأ الأول يعيد تقييم المخاطر الضعيفة، بينما المبدأ الثاني يعيد تقييم المخاطر غير المباشرة فقط."
+                ],
+                correct: 1,
+                hint: "في المبدأ الثاني لا نعيد تقييم شدة واحتمالية المخاطر، بل نختبر 'إجراءات التحكم' التي خصصناها للمخاطر المهمة بواسطة شجرة القرار."
+            },
+            {
+                question: "ما هي فئة المخاطر الوحيدة التي تتدخل للتقييم بواسطة «شجرة القرار (Decision Tree)»؟",
+                options: [
+                    "جميع المخاطر المحددة في المصنع بلا استثناء سواء كانت ضعيفة أو قوية.",
+                    "المخاطر الضعيفة وغير المهمة فقط للتأكد من عدم خطورتها.",
+                    "المخاطر المهمة (Significant Hazards) فقط مثل المخاطر المتوسطة والعالية.",
+                    "المخاطر الفيزيائية الناجمة عن الآلات والمعدات فقط."
+                ],
+                correct: 2,
+                hint: "المخاطر غير المهمة (الضعيفة) تُستبعد من شجرة القرار ويتم التحكم فيها مباشرة عبر برامج الـ PRPs العادية."
+            },
+            {
+                question: "كيف يتم التعامل مع «المخاطر الضعيفة أو غير المهمة» دون الحاجة لإدخالها شجرة القرار؟",
+                options: [
+                    "تُحذف تماماً من جدول الهسب وتُهمل في المصنع.",
+                    "يتم السيطرة عليها كلياً من خلال برامج المتطلبات الأولية العادية (PRPs) مثل النظافة ومكافحة الآفات واعتماد الموردين.",
+                    "تُحول إجبارياً إلى نقاط تحكم حرجة (CCPs) احتياطية.",
+                    "تتطلب إيقاف خط الإنتاج وإعادة التجميع."
+                ],
+                correct: 1,
+                hint: "المخاطر البسيطة احتواؤها مضمون ببرامج الاشتراطات الأساسية (PRPs)، فلا داعي لإثقال خطة الهسب بوضعها كـ CCP."
+            },
+            {
+                question: "حسب تحديث الكودكس (Codex 2022)، إذا كانت برامج الـ PRPs كافية للسيطرة على الخطر المهم في نفس الخطوة (السؤال 1)، فما القرار؟",
+                options: [
+                    "تتصنف الخطوة فوراً كـ CCP.",
+                    "يتصنف الإجراء كـ OPRP.",
+                    "يتم التحكم في الخطر من خلال الـ PRPs مع تشديد المتابعة والتكرار، وتتوقف شجرة القرار بالنسبة لهذه الخطوة.",
+                    "يلزم تعديل المنتَج أو الخطوة التصنيعية فوراً."
+                ],
+                correct: 2,
+                hint: "في شجرة الكودكس، السؤال الأول فلتر مبدئي؛ لو أثبتت الـ PRPs كفايتها نكتفي بها مع رفع درجة التشديد المتابعة ولا نواصل باقي الأسئلة."
+            },
+            {
+                question: "ما الفئة الجديدة التي أضافتها منهجية الآيزو 22000 (ISO 22000 / FSSC) لتكون درجة وسطى بين الـ PRP والـ CCP؟",
+                options: [
+                    "برامج المتطلبات الأولية التشغيلية (Operational Prerequisite Programs - OPRPs).",
+                    "نقاط الرقابة الثانوية (Secondary Control Points - SCPs).",
+                    "حدود السلامة القياسية (Standard Safety Limits).",
+                    "خطط الطوارئ التصنيعية (Manufacturing Contingency Plans)."
+                ],
+                correct: 0,
+                hint: "الـ OPRP في الآيزو هو إجراء تحكم لخطر مهم لكنه لا يحقق شروط الـ CCP الصارمة (كالمراقبة المستمرة أو كونه الخطوة الأخيرة)."
+            },
+            {
+                question: "في شجرة قرار الـ FSSC، ما السؤال الحاسِم للتمييز بين الـ OPRP والـ CCP عندما تكون الخطوة هي «آخر إجراء مصمم للتحكم بالخطر»؟",
+                options: [
+                    "هل يمكن مراقبة أداء إجراء التحكم بشكل مستمر ولحظي أثناء التشغيل واكتشاف الحيود فور حدوثه؟",
+                    "هل التكلفة المالية لشراء أجهزة هذه الخطوة مرتفعة جداً؟",
+                    "هل تم اعتماد المورد المورد للشحنة مسبقاً في قسم المشتريات؟",
+                    "هل يقتصر تطبيق الإجراء على المنتجات المخصصة للتصدير الخارجي؟"
+                ],
+                correct: 0,
+                hint: "شرط الـ CCP في الآيزو يطلب مراقبة مستمرة وآلية (Real-time monitoring) كالبسترة وكاشف المعادن لفرز الحيود لحظياً."
+            },
+            {
+                question: "لماذا تُصنف خطوة «البسترة» بالنسبة للبكتيريا الممرضة كـ CCP في كل من شجرتي الكودكس والـ FSSC؟",
+                options: [
+                    "لأنها الخطوة الأخيرة الحاسمة للسيطرة على الخطر الميكروبي، وتتيح المراقبة المستمرة واللحظية للحرارة والزمن عبر الحساسات.",
+                    "لأن لون العصير يتغير تلقائياً وبشكل ملحوظ عند الغليان.",
+                    "لأن العملية تعتمد كلياً على الفحص والملاحظة البصرية من قبل عمال الإنتاج.",
+                    "لأنها تم منع دخول الأجسام الصلبة والغريبة من المزرعة."
+                ],
+                correct: 0,
+                hint: "البسترة توافق شروط الشجرتين: هي الخطوة الأخيرة القاطعة للخطر، وتتيح متابعة إلكترونية مستمرة تمنع مرور أي عبوة غير مبسترة."
+            },
+            {
+                question: "في مثال «الفرز اليدوي للبرتقال» لاستبعاد الثمار المتعفنة (وهي آخر خطوة للتحكم)، ما التصنيف النهائي حسب شجرة FSSC ولماذا؟",
+                options: [
+                    "CCP لأنها الخطوة الأخيرة المخصصة للتحكم في هذا الخطر.",
+                    "OPRP لأن الفرز يدوي يعتمد على العنصر البشري وصعب اعتبار المراقبة فيه مستمرة ولحظية بنفس دقة الأنظمة الآلية.",
+                    "PRP لأن خطر الثمار المتعفنة هو خطر ضعيف وغير مهم.",
+                    "تعديل خط الإنتاج فوراً وإيقاف عملية الاستلام."
+                ],
+                correct: 1,
+                hint: "تعتمد الأيزو شرط المراقبة المستمرة؛ ولأن العنصر البشري قد يسهو عن ثمرة متعفنة، تُصنف الخطوة كـ OPRP وليس CCP."
+            },
+            {
+                question: "لو قام المصنع بتعديل خطوة الفرز اليدوي للبرتقال واستبدالها بـ «نظام فرز إلكتروني بالأشعة» يفحص كل ثمرة آلياً، فكيف يتغير تصنيف FSSC للفرز؟",
+                options: [
+                    "يتغير التصنيف من OPRP إلى CCP لتوافر المراقبة الآلية المستمرة واللحظية للحيود.",
+                    "يتغير التصنيف من CCP إلى PRP عادي.",
+                    "يظل التصنيف OPRP كما هو دون أي تغيير.",
+                    "يُلغى الخطر تماماً من جدول تحليل المخاطر."
+                ],
+                correct: 0,
+                hint: "تحول المراقبة إلى نظام آلي مستمر يفحص كل قطعة لحظياً يرفع تصنيف الإجراء من OPRP إلى CCP مباشرة في منهجية الآيزو."
+            },
+            {
+                question: "كيف تعاملت شجرة «الكودكس (Codex)» مع خطوة «الفرز اليدوي للبرتقال» مقارنة بالـ FSSC؟",
+                options: [
+                    "صنفتها الكودكس كـ CCP لأنها الخطوة الأخيرة القادرة على إزالة الخطر، دون اشتراط وجود مراقبة مستمرة بمفهوم الآيزو.",
+                    "صنفتها الكودكس كـ OPRP بشكل مطابق تماماً لمنهجية الآيزو.",
+                    "اعتبرتها الكودكس خطوة غير مهمة تُدار ببرامج الـ PRPs العادية.",
+                    "أوجبت الكودكس إلغاء الفرز اليدوي وتغيير المنتَج."
+                ],
+                correct: 0,
+                hint: "هنا يظهر الفرق الرئيسي: الكودكس تُصنف Step كـ CCP طالما أنها الخطوة الأخيرة الفاعلة للإزالة، بغض النظر عن كون المراقبة يدوية أو آلية."
+            },
+            {
+                question: "في حالة خطر وجود أجسام غريبة بالدقيق، إذا كان المنخل يمنع الشوائب الكبيرة والمغناطيس يلقط برادة الحديد، فكيف تنظر شجرة الكودكس للتحكم؟",
+                options: [
+                    "قد تعتمد السيطرة على الخطر على أكثر من إجراء تحكم يكمل كل منهما الآخر، وتُصنف الإجراءات المتكاملة كـ CCPs.",
+                    "يجب إلغاء أحد الإجراءين واختيار إجراء واحد فقط ليصبح CCP.",
+                    "يُصنف المنخل كـ OPRP دائماً والمغناطيس كـ PRP فقط.",
+                    "يُمنع استخدام المنخل والمغناطيس معاً على نفس الخط التصنيعي."
+                ],
+                correct: 0,
+                hint: "تنبه الكودكس إلى أن السيطرة قد تتحقق بمجموع إجراءين متكاملين (منخل للقطع الكبيرة + مغناطيس للحديد) وكلاهما يكملان بعضهما كـ CCP."
+            },
+            {
+                question: "عند تحليل خطر «بقايا ثاني أكسيد الكبريت» الكيميائي في خطوة «استلام السكر» (خطر تقييمه ضعيف)، ما هو التصنيف المعتمد في كلا المدرستين؟",
+                options: [
+                    "CCP فورية لضمان الأمان والسلامة الغذائية.",
+                    "OPRP نظراً للحاجة لإجراء فحوصات مخبرية.",
+                    "PRP (مثل طلب شهادات التحليل وإجراءات اعتماد الموردين) لأن الخطر غير مهم من البداية.",
+                    "إجراء تعديل في خطة الإنتاج وتخفيض كميات السكر."
+                ],
+                correct: 2,
+                hint: "بما أن الخطر غير مهم (Low Risk) منذ المبدأ الأول، فإن كلتا المدرستين (الكودكس والآيزو) تتفقان على السيطرة عليه عبر الـ PRPs."
+            },
+            {
+                question: "إذا لم توجد أي خطوة تصنيعية حالية أو لاحقة قادرة على القضاء على خطر مهم أو تقليله لمستوى مقبول، فما التصرف الواجب؟",
+                options: [
+                    "التغاضي عن الخطر والاستمرار في الإنتاج لتجنب الخسائر.",
+                    "إجراء تعديل إجباري في العملية التصنيعية (إضافة/تطوير خطوة) أو في المنتج نفسه، ثم إعادة مراجعة تحليل المخاطر.",
+                    "تصنيف الخطوة السابقة كـ CCP افتراضية.",
+                    "الاكتفاء بكتابة تعهد إداري بعدم حدوث التلوث."
+                ],
+                correct: 1,
+                hint: "عدم وجود إجراء تحكم لخطر مهم يعني أن النظام عاجز عن إنتاج غذاء آمن؛ لذا يلزم التعديل الفوري للعملية أو المنتَج وإعادة التقييم."
+            },
+            {
+                question: "ما السبب الرئيسي الذي جعل خطوة «استلام البرتقال» بالنسبة لخطر الثمار المتعفنة تتصنف كـ OPRP حسب شجرة FSSC؟",
+                options: [
+                    "لأنها ليست الخطوة الأخيرة المخصصة للتحكم بالخطر، حيث توجد خطوة «فرز» لاحقة هي المسؤولة حاسماً عن استبعادها.",
+                    "لأن البرتقال من الثمار التي لا تتأثر بالعفن إطلاقاً.",
+                    "لأن استلام البرتقال يتطلب بسترة حرارية سريعة قبل التخزين.",
+                    "لأن الخطر غير مهم كلياً في مرحلة الاستلام."
+                ],
+                correct: 0,
+                hint: "في شجرة FSSC (السؤال 3): طالما توجد خطوة لاحقة (كالفرز) مصممة للسيطرة الحاسم على الخطر، فإن خطوة الاستلام تصبح OPRP."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 12) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-award text-5xl"></i>`;
+                resultTitle.innerText = "احتراف وإتقان متكامل للـ CCPs! 🎯";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "تهانينا! لقد أتقنت تماماً المبدأ الثاني، وفهمت الفروق الجوهرية بين شجرة الكودكس 2022 وشجرة FSSC / ISO 22000، وكيفية التصنيف الدقيق لـ PRPs و OPRPs و CCPs!";
+            } else if (score >= 9) {
+                iconContainer.className = "w-24 h-24 bg-cyan-100 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-thumbs-up text-5xl"></i>`;
+                resultTitle.innerText = "نتيجة ممتازة! أداء رائع 👍";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "اجتزت التقييم بنجاح. ننصحك بمراجعة الأسئلة التي أخطأت بها للتمكن التام من شرط المراقبة المستمرة واللحظية للحيود في منهجية الآيزو.";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت التقييم! يُنصح بمراجعة المحاضرة 📖";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-amber-800 mb-2";
+                resultSubtitle.innerText = "تحديد نقاط التحكم الحرجة وأشجار القرار يتطلب تدريباً دقيقاً على تطبيق الأسئلة وتحديد الفروق بين المدرستين. يُفضل إعادة مشاهدة الشرح ثم إعادة الاختبار.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

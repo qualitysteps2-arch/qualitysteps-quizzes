@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار المحاضرة الأولى: مقدمة في نظام الهسب (HACCP)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-clipboard-check text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">كورس الـ HACCP - المحاضرة 1: مقدمة في نظام الهسب</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-navy/10 text-brand-navy rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-list-check text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة الأولى: مقدمة في نظام الهسب (HACCP)
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم التفاعلي للمحاضرة الأولى من كورس الـ HACCP! يغطي هذا التقييم <span class="font-bold text-brand-navy">15 سؤالاً تفاعلياً</span> يشمل الفرق بين الـ PRPs والهسب، أنواع المخاطر، الفرق بين CP و CCP، نشأة الهسب تاريخياً، الفرق بين نظام سلامة الغذاء ونظام إدارة سلامة الغذاء، والـ 12 خطوة (5 تمهيدية + 7 مبادئ).
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-file-signature text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">15 سؤالاً شاملاً</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-bullseye text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">مستوى التقييم</p>
+                        <p class="font-bold text-slate-800">أساسيات ومفاهيم الهسب (HACCP Fundamentals)</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ الاختبار الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 15</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 6.66%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للاختبار</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 15</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة الإجابات والحلول التفصيلية:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const quizData = [
+            {
+                question: "لماذا لا يُعد تطبيق برامج المتطلبات الأولية (PRPs) وحده كافياً لضمان سلامة المنتج بنسبة 100%؟",
+                options: [
+                    "لأن برامج PRPs مكلفة مالم يتم استبدالها بأجهزة بسترة حديثة.",
+                    "لأن الـ PRPs تتحكم بالظروف والبيئة المحيطة بالتصنيع، لكنها لا تتحكم بالمخاطر المباشرة المرتبطة بطبيعة المنتج نفسه أو الخطوات التصنيعية المحددة.",
+                    "لأن الـ PRPs تطبق فقط في مصانع اللحوم ولا تصلح لمصانع العصائر.",
+                    "لأن مواصفات الأيزو تمنع استخدام الـ PRPs بدون وجود شهادة هسب سابقة."
+                ],
+                correct: 1,
+                hint: "الـ PRPs تحمي بيئة الإنتاج (كالنظافة والصيانة ومكافحة الآفات)، بينما المخاطر الكامنة بالمنتج (كوجود بكتيريا بالعصير) تحتاج نظام الهسب."
+            },
+            {
+                question: "في مثال مصنع العصير، أي من المخاطر التالية يُعتبر خطراً مرتبطة بالمنتج نفسه ولا تستطيع الـ PRPs القضاء عليه بمفردها؟",
+                options: [
+                    "تلوث العصير بصدأ السكاكين المستخدمة في التقطيع.",
+                    "تلوث العصير بسبب أيدي العمال غير المغسولة.",
+                    "وجود بكتيريا ممرضة داخل سائل العصير تتطلب خطوة حرارية للتخلص منها.",
+                    "دخول الحشرات والقوارض لصالة الإنتاج."
+                ],
+                correct: 2,
+                hint: "صدأ السكاكين يُعالج بالصيانة، ونظافة الأيدي تُعالج بالـ Hygiene، والحشرات بالمكافحة (PRPs)؛ أما البكتيريا داخل السائل فيلزمها الهسب (البسترة)."
+            },
+            {
+                question: "ما هو المعنى الحرفي والمفهوم العام لاختصار كلمة «HACCP»؟",
+                options: [
+                    "Health and Clean Control Program (برنامج التحكم في الصحة والنظافة).",
+                    "Hazard Analysis and Critical Control Point (تحليل المخاطر ونقاط التحكم الحرجة).",
+                    "High Automation Hygiene Control Process (عملية التحكم الآلي بالنظافة العالية).",
+                    "Hazard Prevention and Chemical Control Protocol (بروتوكول منع المخاطر والتحكم الكيميائي)."
+                ],
+                correct: 1,
+                hint: "يتكون الاسم من شقين: Hazard Analysis (تحليل المخاطر) + Critical Control Point (نقاط التحكم الحرجة)."
+            },
+            {
+                question: "أي من الخيارات التالية يُصنف ضمن «المخاطر الكيميائية Chemical Hazards» وفقاً لنظام الهسب؟",
+                options: [
+                    "الرمل والأخشاب وقطع الزجاج وشعر العمال.",
+                    "البكتيريا والفطريات والميكروبات المرضية.",
+                    "بقايا مواد التنظيف، المبيدات الحشرية، المسببات للحساسية (Allergens)، والخطر الإشعاعي.",
+                    "وجود مكونات غير حلال في المنتج."
+                ],
+                correct: 2,
+                hint: "المخاطر الكيميائية تشمل الكيميائيات المباشرة بالإضافة للمنظفات، المبيدات، المواد المسببة للحساسية، والإشعاع."
+            },
+            {
+                question: "أين يقع تصنيف «الخطر غير الحلال» مقارنة بالمرجعيات المعتمدة عالمياً (مثل Codex و ISO)؟",
+                options: [
+                    "هو الخطر الأساسي الأول المكتوب في جميع أدلة Codex التنفيذية.",
+                    "ليس ضمن التصنيف العلمي الرسمي الثلاثي المعتمد في Codex/ISO (فيزيائي، كيميائي، بيولوجي)، ولكنه متطلب عميل وشرعي جوهري خاصة للمستهلكين المسلمين.",
+                    "يُصنف دائماً كخطر فيزيائي مجرد.",
+                    "يُصنف كخطر بيولوجي لأنه يتعلق بالبكتيريا النافعة."
+                ],
+                correct: 1,
+                hint: "التصنيف العلمي المعتمد يشمل 3 أنواع رئيسية، أما غير الحلال فيُدار بدقة كمتطلب عميل ومتطلب شرعي وقانوني محدد."
+            },
+            {
+                question: "ما الفارق الجوهري بين «نقطة التحكم Control Point - CP» و«نقطة التحكم الحرجة Critical Control Point - CCP»؟",
+                options: [
+                    "الـ CP تطبق في المعامل فقط، بينما الـ CCP تطبق في المخازن فقط.",
+                    "الـ CP تقلل الخطر لكنها ليست الفرصة الأخيرة، بينما الـ CCP هي المرحلة الأخيرة والفيصلية التي لو اختلت لن تكون هناك خطوة بعدها لمعالجة الخطر.",
+                    "لا يوجد أي فارق وهما مصطلحان لشيء واحد.",
+                    "الـ CP خاصة بالمخاطر الفيزيائية والـ CCP خاصة بالمخاطر البيولوجية فقط."
+                ],
+                correct: 1,
+                hint: "تذكر مثال غسيل الفاكهة (CP تقلل التلوث وليست الأخيرة) مقابل البسترة (CCP خطوة فيصلية أخيرة لمنع الخطر قبل التعبئة)."
+            },
+            {
+                question: "لماذا تُعتبر خطوة «بسترة العصير قبل التعبئة» نقطة تحكم حرجة (CCP)، بينما تُعتبر خطوة «غسيل الفاكهة» نقطة تحكم عادية (CP)؟",
+                options: [
+                    "لأن الغسيل يستهلك ماءً أكثر من البسترة.",
+                    "لأن البسترة هي خطوة التحكم الأخيرة للقضاء على البكتيريا قبل التعبئة، بينما الغسيل يقلل التلوث الأولي وستتبعه خطوات حرارية أخرى.",
+                    "لأن البسترة تتم آلياً والغسيل يتم يدوياً.",
+                    "لأن الغسيل لا يمكن مراقبته بسجلات رسمية."
+                ],
+                correct: 1,
+                hint: "لو حدث خلل بالبسترة سيتعبأ المنتج ملوثاً لعدم وجود خطوة علاجية بعدها، لذا هي CCP."
+            },
+            {
+                question: "كيف ومتى نشأت فكرة نظام الهسب (HACCP) تاريخياً لأول مرة؟",
+                options: [
+                    "في التسعينات بواسطة منظمة الصحة العالمية لضبط مطاعم الوجبات السريعة.",
+                    "في الستينات برعاية وكالة الفضاء الأمريكية (NASA) بالتعاون مع شركة (Pillsbury) لضمان أمان غذاء رواد الفضاء بنسبة 100%.",
+                    "في السبعينات بواسطة منظمة الأغذية والزراعة (FAO) لمكافحة المجاعات.",
+                    "في عام 2000 عند صدور مواصفة ISO 22000."
+                ],
+                correct: 1,
+                hint: "NASA كانت تحتاج غذاءً آمن تماماً لرواد الفضاء لعدم إمكانية العلاج في الفضاء، فابتكرت النظام مع شركة Pillsbury."
+            },
+            {
+                question: "ما الفرق الأساسي بين «نظام سلامة الغذاء Food Safety System» و«نظام إدارة سلامة الغذاء Food Safety Management System»؟",
+                options: [
+                    "نظام سلامة الغذاء يركز على المبيعات، بينما نظام الإدارة يركز على المخازن.",
+                    "نظام سلامة الغذاء (مثل الهسب) يركز على الجانب الفني للعملية والمنتج، بينما نظام الإدارة (مثل ISO 22000) يدمج الجانب الفني بالإداري والموارد والتحسين المستمر للمؤسسة.",
+                    "نظام إدارة سلامة الغذاء أضيق نطاقاً ولا يشمل تحليل المخاطر.",
+                    "لا يوجد فارق بينهما إطلاقاً."
+                ],
+                correct: 1,
+                hint: "الهسب نظام فني موجه للمنتج/العملية، أما ISO 22000 فهو إطار إداري شامل يدعم ويغذي تطبيق نظام الهسب بالمؤسسة."
+            },
+            {
+                question: "يتكون هيكل تطبيق نظام الهسب (HACCP) الكلي من كم خطوة؟ وما هو تقسيمها؟",
+                options: [
+                    "10 خطوات (5 مبادئ و5 سجلات).",
+                    "12 خطوة (5 خطوات تمهيدية + 7 مبادئ أساسية).",
+                    "7 خطوات فقط هي المبادئ الأساسية.",
+                    "15 خطوة (8 خطوات للـ PRPs و7 للهسب)."
+                ],
+                correct: 1,
+                hint: "النظام ينقسم إلى 5 خطوات تمهيدية تسبق وتجهز لتنفيذ المبادئ الـ 7 الأساسية (إجمالي 12 خطوة)."
+            },
+            {
+                question: "ما هي «الخطوة التمهيدية الأولى» من الخطوات الخمس للهسب؟",
+                options: [
+                    "رسم خريطة التدفق (Flow Diagram).",
+                    "تشكيل فريق الهسب (Assemble HACCP Team).",
+                    "تحديد الحدود الحرجة (Critical Limits).",
+                    "وصف المنتج والمكونات."
+                ],
+                correct: 1,
+                hint: "بداية العمل العملي في أي نظام هي تكوين الفريق المؤهل والمشكل من التخصصات المختلفة."
+            },
+            {
+                question: "ما هدف الخطوة التمهيدية الخامسة «التحقق من خريطة التدفق On-site Verification of Flow Diagram»؟",
+                options: [
+                    "حساب التكاليف المادية لخطوط الإنتاج.",
+                    "نزول الفريق لموقع التصنيع للتأكد من أن الخريطة المكتوبة مطابقة تماماً للواقع الفعلي دون نسيان أي مسار أو خطوة.",
+                    "توزيع الكاميرات على ممرات المصنع.",
+                    "اختبار عينات العصير معملياً."
+                ],
+                correct: 1,
+                hint: "يجب التأكد ميدانياً بالمعاينة الفعلية (On-site) أن خريطة التدفق المرسومة على الورق تعكس ما يحدث بالوردية بالكامل."
+            },
+            {
+                question: "في المبدأ الثالث من مبادئ الهسب «تعيين الحدود الحرجة Critical Limits»، ما المعنى الدقيق للحد الحرج؟",
+                options: [
+                    "الحد المالي الأقصى لشراء المواد الخام.",
+                    "المعيار الفاصل بين المقبول والغير مقبول (بين الأمان والمنطقة الخطرة) عند نقطة التحكم الحرجة.",
+                    "عدد ساعات العمل المسموح بها للعاملين بالمصنع.",
+                    "أقصى كمية مبيعات يمكن تصديرها يومياً."
+                ],
+                correct: 1,
+                hint: "الحد الحرج (مثل درجة حرارة 72°م لمدة 15 ثانية) هو الفاصل الحاسم بين منتج آمن ومنتح غير آمن."
+            },
+            {
+                question: "ما الهدف المباشر من المبدأ الخامس «وضع الإجراءات التصحيحية Corrective Actions»؟",
+                options: [
+                    "إلغاء الحاجة لتدريب العمال بصفة دورية.",
+                    "التخطيط والتفكير المسبق في كيفية التصرف المباشر والسليم عند حدوث حيود (Deviation) عن الحد الحرج، لتجنب الارتباك عند الخلل.",
+                    "تعديل أسعار المنتجات المباعة بالسوق.",
+                    "إصدار شهادات التقدير لفريق سلامة الغذاء."
+                ],
+                correct: 1,
+                hint: "الإجراء التصحيحي يُوضع заранее (مسبقاً) حتى يُنفذ فوراً وبسرعة وبدون تردد عند تجاوز الحد الحرج."
+            },
+            {
+                question: "يتكون المبدأ السادس من جزءين: «الصلاحية Validation» و«التحقق Verification»؛ ما الفارق بينهما؟",
+                options: [
+                    "الصلاحية تعني التسعير، والتحقق يعني التغليف.",
+                    "الصلاحية (Validation) هي التأكد المسبق من أن خطة الهسب مصممة بشكل صحيح وكافٍ لحماية المنتج، بينما التحقق (Verification) هو التأكد الميداني من أن الخطة تُنفذ بالفعل كما خطط لها.",
+                    "الصلاحية تتم بعد سنة من التطبيق، والتحقق يتم قبل الشروع في التصنيع.",
+                    "الصلاحية خاصة بالعمال، والتحقق خاص بالموردين."
+                ],
+                correct: 1,
+                hint: "Validation: هل خطتنا صحيحة وعلمية وقادرة على السيطرة؟ (Prior) | Verification: هل نطبق خطتنا بفعالية على أرض الواقع؟ (Ongoing)."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 12) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-award text-5xl"></i>`;
+                resultTitle.innerText = "ممتاز جداً! استيعاب كامل للمحاضرة الأولى 👏";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "تهانينا! أظهرت فهماً شاملاً ودقيقاً لمفاهيم الهسب، والفرق بين PRPs و CCPs، ونشأة النظام وهيكله المكون من 12 خطوة!";
+            } else if (score >= 9) {
+                iconContainer.className = "w-24 h-24 bg-cyan-100 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-thumbs-up text-5xl"></i>`;
+                resultTitle.innerText = "أداء جيد جداً! محاولة موفقك 👍";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "لقد اجتزت التقييم بنجاح. راجع الأسئلة التي أخطأت بها بالأسفل لتثبيت المفاهيم تماماً قبل الانتقال للمحاضرة القادمة.";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت التقييم! نوصي بمراجعة المحاضرة 📖";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-amber-800 mb-2";
+                resultSubtitle.innerText = "المحاضرة الأولى هي الأساس لكل الكورس. نوصيك بمراجعة الشرح والإجابات التفصيلية أدناه للتمكن من الأساسيات بشكل كامل.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
