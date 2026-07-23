@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار برامج المتطلبات الأولية (PRPs)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <!-- Custom SVG Book Logo matching Quality Steps Brand -->
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-book-open text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">المحاضرة 3: مقدمة الـ PRPs وسلسلة الغذاء</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- WELCOME SCREEN -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-cyan/10 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-layer-group text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة الثالثة: برامج المتطلبات الأولية (PRPs) وسلسلة الغذاء
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto">
+                أهلاً بك في كويز المراجعة التفاعلي! هذا الاختبار عبارة عن <span class="font-bold text-brand-navy">تقييم ذاتي من 8 أسئلة</span> للتحقق من استيعابك لمفهوم الـ PRPs، وسلسلة الغذاء، والمواصفات الدولية.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-ol text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">8 أسئلة</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-user-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">نوع الاختبار</p>
+                        <p class="font-bold text-slate-800">تقييم ذاتي للمعلومات</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ التقييم الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Question Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 8</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 12.5%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <!-- Question Header -->
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Content -->
+                </h3>
+
+                <!-- Options List -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Toggle Button -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Icon inserted via JS -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للتقييم</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 8</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة إجاباتك:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review items dynamically injected here -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة التقييم
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quiz Engine Script -->
+    <script>
+        const quizData = [
+            {
+                question: "ما التعريف الأساسي لبرامج المتطلبات الأولية (PRPs - Prerequisite Programs) في سلامة الغذاء؟",
+                options: [
+                    "إجراءات معقدة يتم تطبيقها فقط بعد حدوث تلوث في المنتج النهائي.",
+                    "مجموعة القواعد والإجراءات الأساسية التي توفر بيئة نظيفة وآمنة للحد من التلوث من البداية.",
+                    "خطة طوارئ بديلة تُنفذ فقط عند توقف خطوط الإنتاج بالمصنع.",
+                    "برامج اختيارية تقتصر فقط على قسم التسويق والمبيعات."
+                ],
+                correct: 1,
+                hint: "تذكر تشبيه برامج الـ PRPs بحجر الأساس للعماره التي بدونها ينهار البناء."
+            },
+            {
+                question: "ما المقصود بـ \"سلسلة الغذاء\" (Food Chain) وما هي العبارة الشهيرة المفتاحية لها؟",
+                options: [
+                    "مرحلة التصنيع النهائي فقط داخل المصنع، وتُعرف بـ \"من المصنع إلى العميل\".",
+                    "مرحلة الزراعة واستصلاح الأراضي فقط، وتُعرف بـ \"من المزرعة للمصنع\".",
+                    "كافة المراحل التي يمر بها المنتج من الإنتاج الأولي حتى الاستهلاك، وتختصر بـ \"من المزرعة للشوكة\" (From Farm to Fork).",
+                    "نقل وتوزيع المنتجات الغذائية بين الدول والموانئ فقط."
+                ],
+                correct: 2,
+                hint: "تشمل الزراعة، الأعلاف، التصنيع، التخزين والنقل، والبيع بالتجزئة (Retail) والخدمات (Catering)."
+            },
+            {
+                question: "أي من الأنشطة التالية يندرج تحت قطاع \"مقدمي الخدمات الغذائية\" (Catering) ضمن سلسلة الغذاء؟",
+                options: [
+                    "محلات السوبر ماركت وتجارة التجزئة (Retail).",
+                    "المطاعم والفنادق ومطابخ المستشفيات والمدارس والمطابخ المركزية.",
+                    "شركات نقل وتخزين المواد الخام بين الموانئ.",
+                    "مصانع إنتاج الأعلاف الحيوانية والأسمدة."
+                ],
+                correct: 1,
+                hint: "قطاع الـ Catering يختص بتحضير وتقديم الوجبات الغذائية المباشرة للمستهلكين أو المؤسسات."
+            },
+            {
+                question: "لماذا يجب السيطرة والتحكم في جميع مراحل \"سلسلة الغذاء\" وعدم التركيز على المصنع فقط؟",
+                options: [
+                    "لأن أي خطأ أو تلوث يحدث في مرحلة مبكرة (مثل الري بمياه ملوثة أو التخزين السيئ) سينتقل للمراحل التالية حتى المستهلك.",
+                    "لأن المواصفات القياسية تفرض رسوماً إضافية إذا تم فحص المصنع بمفرده.",
+                    "لأن مرحلة التصنيع هي المرحلة الوحيدة الآمنة تماماً من خطر التلوث.",
+                    "لتسهيل عمليات الدعاية والتسويق والإعلان عن المنتجات."
+                ],
+                correct: 0,
+                hint: "تذكر مثال استخدام مياه ملوثة في ري الخضروات وتأثيرها المباشر حتى لو تم نقلها بشكل جيد."
+            },
+            {
+                question: "ما الفائدة الرئيسية التي تعود على المصنع عند تطبيق مواصفات سلامة الغذاء القياسية (مثل ISO 22000 أو BRCGS)؟",
+                options: [
+                    "الاستغناء الكامل عن برامج النظافة الشخصية والتعقيم.",
+                    "توفير طريقة عمل مجربة وموثوقة مبنية على خبرات طويلة، مما يمنح ثقة أكبر للعملاء والجهات الرقابية.",
+                    "الاعتماد على أسلوب التجربة والخطأ دون الحاجة لمرجعية علمية.",
+                    "إلغاء الحاجة لوجود قسم لمراقبة الجودة أو التفتيش الداخلي."
+                ],
+                correct: 1,
+                hint: "المواصفات تمنع المنشأة من إضاعة الوقت في التجربة والخطأ وتوفر إرشادات مجربة عالمياً."
+            },
+            {
+                question: "لماذا تم اعتماد شرح 23 برنامجاً لـ PRPs في هذا الكورس بدلاً من الاستعانة بمواصفة واحدة فقط؟",
+                options: [
+                    "لأن مواصفة ISO 22000 تمنع استخدام أي مواصفات أخرى معها.",
+                    "لتقديم تغطية شاملة ومتوافقة مع ISO 22002 و FSSC 22000 و BRCGS وتجنب تشتت الطالب بين الاختلافات المسميات.",
+                    "لأن برامج الـ PRPs تتغير وتتعدل أسبوعياً في مصانع الأغذية.",
+                    "لأن القانون يمنع شرح كل مواصفة قياسية بشكل مستقل."
+                ],
+                correct: 1,
+                hint: "الهدف هو جمع وتوحيد المتطلبات من مختلف المواصفات العالمية لإعطاء صورة كاملة وعملية."
+            },
+            {
+                question: "ما هو البرنامج المختص بالتعامل مع \"المنتجات غير المطابقة\" لإعادة تشغيلها أو معالجتها بأمان داخل المصنع؟",
+                options: [
+                    "برنامج المعايرة (Calibration).",
+                    "برنامج الـ Rework (إعادة التشغيل).",
+                    "برنامج حماية الغذاء (Food Defense).",
+                    "برنامج التتبع (Traceability)."
+                ],
+                correct: 1,
+                hint: "المصطلح الإنجليزي يعبر عن إعادة معالجة أو استخدام المنتجات غير المطابقة بطريقة لا تضر بسلامة الغذاء."
+            },
+            {
+                question: "ما الذي يميز برنامج \"حماية الغذاء\" (Food Defense) عن باقي برامج السلامة الاعتيادية؟",
+                options: [
+                    "يركز على التلوث البكتيري الطبيعي الناتج عن سوء التخزين فقط.",
+                    "يهتم بحماية المنتج الغذائي من التلوث المتعمد (Intentional Contamination) والتخريب المباشر.",
+                    "يقتصر دوره على معايرة أجهزة القياس والحرارة بالمصنع.",
+                    "يتعامل فقط مع شكاوى العملاء واسترجاع المبيعات."
+                ],
+                correct: 1,
+                hint: "تذكر كلمة \"المتعمد\"؛ فالهدف هو الوقاية من أعمال التخريب العمدي لحماية الغذاء."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+            }
+
+            document.getElementById('score-tracker').innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            iconContainer.className = "w-24 h-24 bg-brand-cyan/10 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+            iconContainer.innerHTML = `<i class="fa-solid fa-circle-check text-5xl"></i>`;
+            resultTitle.innerText = "أكملت التقييم الذاتي بنجاح!";
+            resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+            resultSubtitle.innerText = "يمكنك مراجعة إجاباتك أدناه للتعرف على النقاط التي تحتاج إلى مراجعة إضافية.";
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

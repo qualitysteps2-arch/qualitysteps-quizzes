@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار برنامج النظافة الشخصية</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <!-- Custom SVG Book Logo matching Quality Steps Brand -->
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-hands-bubbles text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">المحاضرة 4: برنامج النظافة الشخصية (Personal Hygiene)</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- WELCOME SCREEN -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-cyan/10 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-user-shield text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة الرابعة: برنامج النظافة الشخصية (Personal Hygiene)
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto">
+                أهلاً بك في كويز المراجعة التفاعلي! هذا الاختبار عبارة عن <span class="font-bold text-brand-navy">تقييم ذاتي من 10 أسئلة</span> للتحقق من استيعابك لمحاور التحكم الثلاثة: صحة العامل، ملابس العمل والمتعلقات، وطرق غسيل اليدين ومحطات النظافة.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-ol text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">10 أسئلة</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-user-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">نوع الاختبار</p>
+                        <p class="font-bold text-slate-800">تقييم ذاتي للمعلومات</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ التقييم الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Question Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 10</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <!-- Question Header -->
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Content -->
+                </h3>
+
+                <!-- Options List -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Toggle Button -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Icon inserted via JS -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للتقييم</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 10</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة إجاباتك:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review items dynamically injected here -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة التقييم
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quiz Engine Script -->
+    <script>
+        const quizData = [
+            {
+                question: "ما الهدف الأساسي من إعداد وتطبيق برنامج \"النظافة الشخصية\" (Personal Hygiene) في مصانع الأغذية؟",
+                options: [
+                    "تقليل استهلاك المياه والمنظفات أثناء عمليات الغسيل داخل المصنع.",
+                    "ضمان ألا يكون العامل البشري نفسه مصدراً لنقل التلوث إلى المنتج الغذائي.",
+                    "تسريع عملية الإنتاج والاستغناء عن كواشف المعادن والأجهزة الرقابية.",
+                    "توفير ميزانية التدريب السنوية المخصصة للعمال الجدد."
+                ],
+                correct: 1,
+                hint: "تذكر أن العنصر البشري قد يحمل ميكروبات أو أجساد غريبة قد تنتقل مباشرة للغذاء إذا لم نتحكم في نظافته."
+            },
+            {
+                question: "إذا أصيب عامل بجرح بسيط يستدعي التضميد، ما الشرطان الواجب توافرهما في هذه الضمادة قبل السماح له بالعمل؟",
+                options: [
+                    "أن تكون شفافة تماماً وغير معطرة.",
+                    "أن تكون بلون عادي ومصنوعة من القماش الطبيعي.",
+                    "أن تكون بلون مميز (مثل الأزرق) وقابلة للاكتشاف بواسطة جهاز كاشف المعادن.",
+                    "أن يتم تغييرها كل 10 دقائق أثناء وردية العمل."
+                ],
+                correct: 2,
+                hint: "اللون المميز يسهل ملاحظتها بالعين إذا وقعت، والخاصية المعدنية تضمن كشفها إلكترونياً."
+            },
+            {
+                question: "لماذا يُشترط تقسيم الخزانة الشخصية (Locker) الخاصة بكل عامل داخل غرفة التبديل إلى جزئين منفصلين؟",
+                options: [
+                    "لتفادي التلوث المتبادل (Cross-contamination) بين المتعلقات وملابس الشارع وبين ملابس العمل النظيفة.",
+                    "لتخصيص جزء للوجبات الغذائية وجزء للمشروبات والماء.",
+                    "لأن القوانين تفرض وجود دولابين لكل عامل بشكل اختياري.",
+                    "للسماح لعاملين بتشارك نفس الخزانة توفيراً للمساحة."
+                ],
+                correct: 0,
+                hint: "ملابس الشارع والمتعلقات قد تحمل أتربة وميكروبات من البيئة الخارجية يجب ألا تلامس زي صالة الإنتاج."
+            },
+            {
+                question: "ما هو الترتيب الصحيح والآمن لارتداء زي العمل الكامل قبل الدخول لصالة الإنتاج؟",
+                options: [
+                    "ارتداء الحذاء، ثم الأفرول، ثم غطاء الشعر واللحية.",
+                    "من الأعلى إلى الأسفل (غطاء الشعر واللحية أولاً، ثم الأفرول/البالطو، ثم الحذاء الخاص).",
+                    "ارتداء الأفرول أولاً، ثم الحذاء، وأخيراً غطاء الشعر.",
+                    "لا يهم الترتيب طالما يتم ارتداء كافة القطع في النهاية."
+                ],
+                correct: 1,
+                hint: "الارتداء من الأعلى للأسفل يمنع تساقط أي شعر على زي العمل النظيف بعد ارتدائه."
+            },
+            {
+                question: "لماذا يجب أن تكون ملابس العمل خالية تماماً من الأزرار (Buttons) والسوست (Zippers)؟",
+                options: [
+                    "لأنها تجعل ملابس العمل أثقل وزناً على العامل.",
+                    "لتسهيل عملية الغسيل والكي في المغاسل الخارجية فقط.",
+                    "لتجنب خطر تساقط الأزرار أو السوست داخل المنتج الغذائي مما يسبب خطراً فيزيائياً.",
+                    "لأن تكلفة الملابس الخالية من الأزرار تكون أرخص للمصنع."
+                ],
+                correct: 2,
+                hint: "الأزرار قد تنفك وتسقط كأجسام غريبة في خط الإنتاج دون أن ينتبه العامل."
+            },
+            {
+                question: "ما درجة الحرارة الموصى بها للماء الدافئ المستخدم في غسيل اليدين بمصانع الأغذية؟",
+                options: [
+                    "من 0 إلى 10 درجات مئوية (ماء بارد جداً).",
+                    "من 38 إلى 40 درجة مئوية تقريباً.",
+                    "أعلى من 70 درجة مئوية (ماء مغلي).",
+                    "درجة حرارة الغرفة العادية دون الحاجة لتسخين."
+                ],
+                correct: 1,
+                hint: "الماء الدافئ بهذا المدى يساعد على إزالة الدهون وتفعيل الصابون دون التسبب في حروق للجلد."
+            },
+            {
+                question: "أي من الممارسات التالية تُعد من الأخطاء الشائعة أثناء أو بعد غسيل الأيدي داخل المنشأة الغذائية؟",
+                options: [
+                    "استخدام صابون سائل منزع بضاغط أو بسينسور.",
+                    "استخدام الصابون الصلب والمناشف القماشية المشتركة.",
+                    "استخدام مناديل ورقية ذات استخدام واحد للتجفيف.",
+                    "إغلاق الحنفية باستخدام المناديل الورقية أو الكوع."
+                ],
+                correct: 1,
+                hint: "الصابون الصلب تتراكم عليه البكتيريا والمناشف القماشية تنقل الميكروبات من شخص لآخر."
+            },
+            {
+                question: "ما هي الوظيفة الأساسية لـ \"محطة النظافة\" (Hygiene Station) المثبتة على مداخل المناطق الحساسة؟",
+                options: [
+                    "قياس درجة حرارة العمال وتسجيل الحضور والانصراف إلكترونياً.",
+                    "منع العامل من المرور ودخول الصالة إلا بعد إتمام خطوات غسيل وتطهير الأيدي وتنظيف الأحذية بالكامل.",
+                    "فحص ملابس العمال للتأكد من خلوها من الأزرار تلقائياً.",
+                    "تزويد العمال بالوجبات الغذائية والمشروبات قبل بدء الورقية."
+                ],
+                correct: 1,
+                hint: "تعتمد على حاجز أوتوماتيكي لا يفتح إلا بعد قيام العامل بكافة خطوات التطهير والغسيل."
+            },
+            {
+                question: "أي من الأوقات التالية يلتزم فيها العامل بغسيل وتطهير يديه فوراً؟",
+                options: [
+                    "قبل الدخول لصالة الإنتاج وبعد استخدام الحمام فقط.",
+                    "قبل الدخول للصالة، وبعد الحمام، وبعد لمس الوجه/الشعر، وبعد التعامل مع النفايات، وعند العودة من الاستراحة.",
+                    "مرة واحدة فقط في بداية وردية العمل.",
+                    "فقط عند ظهور أوساخ وأتربة مرئية بالعين المجردة على يديه."
+                ],
+                correct: 1,
+                hint: "غسيل اليدين إجراء مستمر يتكرر عند كل تلامس قد يلوث اليدين بالميكروبات."
+            },
+            {
+                question: "أي من السلوكيات التالية يُعتبر ممنوعاً تماماً داخل صالة الإنتاج لتجنب التلوث؟",
+                options: [
+                    "ارتداء الأجهزة الطبية المصرح بها فقط.",
+                    "ارتداء الساعات، المجوهرات، طلاء الأظافر (المانيكير)، وتناول الطعام أو الدواء داخل الصالة.",
+                    "ارتداء بالطو الاستخدام الواحد للزوار والتفتيش.",
+                    "استخدام حنفية المياه التي تعمل بالمستشعر (Sensor)."
+                ],
+                correct: 1,
+                hint: "المتعلقات الشخصية والمكياج والأكل داخل الصالة تسبب مخاطر بيولوجية وفيزيائية وكيميائية خطيرة."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+            }
+
+            document.getElementById('score-tracker').innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            iconContainer.className = "w-24 h-24 bg-brand-cyan/10 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+            iconContainer.innerHTML = `<i class="fa-solid fa-circle-check text-5xl"></i>`;
+            resultTitle.innerText = "أكملت التقييم الذاتي بنجاح!";
+            resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+            resultSubtitle.innerText = "يمكنك مراجعة إجاباتك أدناه للتعرف على النقاط التي تحتاج إلى مراجعة إضافية.";
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

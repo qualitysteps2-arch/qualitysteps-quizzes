@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار برنامج التحكم في الخطر البيولوجي (Biological Hazard Control)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-bacteria text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">التحكم في الخطر البيولوجي (Biological Hazard Control)</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-cyan/10 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-microscope text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة: برنامج التحكم في الخطر البيولوجي
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم الذاتي التفاعلي! يهدف هذا الاختبار إلى <span class="font-bold text-brand-navy">قياس فهمك واستيعابك (10 أسئلة)</span> لأنواع الملوثات الميكروبية، مصادر التلوث البيولوجي، مفهوم Biofilms، معايير تصميم المعدات والمنشأة، ومستويات التحكم PRP & HACCP.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">10 أسئلة تفاعلية</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-bullseye text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">نوع الاختبار</p>
+                        <p class="font-bold text-slate-800">تقييم ذاتي وتأكيد المفاهيم</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ التقييم الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 10</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للتقييم</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 10</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة إجاباتك بالتفصيل:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة التقييم
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const quizData = [
+            {
+                question: "ما الفرق الأساسي بين الفيروسات والبكتيريا من حيث قدرتها على التكاثر والنمو خارج جسم الكائن الحي؟",
+                options: [
+                    "الفيروسات تضاعف أعدادها بالانقسام السريع على السطوح الجافة، بينما البكتيريا تحتاج لعائل حي.",
+                    "الفيروسات تكون خاملة تماماً ولا تتكاثر إلا داخل خلايا كائن حي، بينما تتكاثر البكتيريا بحرية في البيئة المناسبة.",
+                    "كلاهما يتكاثر بنفس السرعة عند توفر الرطوبة والغذاء على الأسطح بالمصنع.",
+                    "البكتيريا تتوقف عن النمو تماماً في درجات الحرارة العادية بخلاف الفيروسات."
+                ],
+                correct: 1,
+                hint: "الفيروسات كائنات متطفلة إجبارية؛ لا تملك القدرة على التكاثر الذاتي خارج خلايا الكائن الحي المستهدف."
+            },
+            {
+                question: "أي من السموم التالية تفرزها بعض أنواع الفطريات الضارة وتعتبر مادة مسببة لسرطان الكبد على المدى الطويل؟",
+                options: [
+                    "سموم البوتولينوم (Botulinum Toxins).",
+                    "بكتيريا السالمونيلا (Salmonella).",
+                    "سموم الأفلاتوكسين (Aflatoxins).",
+                    "بكتيريا الإشيريشيا كولاي (E. coli)."
+                ],
+                correct: 2,
+                hint: "الأفلاتوكسين من السموم الفطرية (Mycotoxins) الخطيرة التي تنتجها أعفان تصيب المكسرات والحبوب وتضر بالكبد والجهاز المناعي."
+            },
+            {
+                question: "لماذا تُشكل بكتيريا المكورات العنقودية (Staphylococcus) خطراً معقداً عند انتقالها من جلد أو أنف العامل إلى الغذاء؟",
+                options: [
+                    "لأنها تفرز سموماً مقاومة للحرارة تظل موجودة في الغذاء حتى لو تم طهيه وقتل البكتيريا نفسها.",
+                    "لأنها لا تنتقل إلا عبر تناول الخضروات المروية بمياه الصرف الصحي.",
+                    "لأنها تنمو وتتكاثر فقط داخل المجمدات ودرجات التبريد الشديدة.",
+                    "لأنها تدمر المركبات الزيتية والبروتينية وتمنع تعبئة المنتج بالكامل."
+                ],
+                correct: 0,
+                hint: "حتى عند تسخين الأكل وقتل البكتيريا، فإن السموم الحرارية التي أفرزتها مسبقاً تظل نشطة وتسبب تسمماً غذائياً."
+            },
+            {
+                question: "ما السبب الرئيسي لنشوء وتكوّن الأغشية الحيوية (Biofilms) على أسطح خطوط الإنتاج والمعدات؟",
+                options: [
+                    "الاستخدام المفرط لمواد التنظيف والتطهير عالية التركيز.",
+                    "التنظيف اليومي الشامل للأسطح الملامسة للأغذية بالفولاذ المقاوم للصدأ.",
+                    "اعتماد ضغط هواء موجب داخل صالات الإنتاج والتعبئة.",
+                    "تراكم بقايا الطعام والرطوبة في النقاط الميتة بالمعدات مما يتيح للبكتيريا بناء طبقة لزجة تحميها من المطهرات."
+                ],
+                correct: 3,
+                hint: "تتشكل الـ Biofilms عندما تلتصق البكتيريا بالأسطح غير النظيفة وتفرز مادة لزجة تحمي مستعمراتها من وسائل التنظيف التقليدية."
+            },
+            {
+                question: "أي الخامات التالية يُوصى باستخدامها في تصنيع الأجزاء الملامسة للأغذية بالمعدات لضمان عدم التآكل والشقوق الميكروبية؟",
+                options: [
+                    "الحديد الزهر غير المطلي نظراً لصلابته العالية ورخص ثمنه.",
+                    "المعادن العادية القابلة للتآكل لتسهيل عملية الصيانة الدورية.",
+                    "الفولاذ المقاوم للصدأ بدرجات موصى بها مثل Stainless Steel 304 أو 316.",
+                    "الأنابيب البلاستيكية التجارية غير المعتمدة غذائياً."
+                ],
+                correct: 2,
+                hint: "الـ Stainless Steel بجريد 304 أو 316 يقاوم التآكل والصدأ ويوفر أسطحاً ملساء يسهل تنظيفها وتطهيرها."
+            },
+            {
+                question: "كيف يتم تطبيق التحكم في اتجاه حركة الهواء لمنع انتقال التلوث البيولوجي من صالات التجهيز إلى صالات التعبئة النظيفة؟",
+                options: [
+                    "التحكم في ضغط الهواء بحيث يتحرك الهواء دائماً من المناطق عالية النظافة نحو المناطق الأقل نظافة.",
+                    "السماح للهواء بالتدفق بحرية وبدون توجيه بين جميع صالات الإنتاج.",
+                    "جعل ضغط الهواء في مناطق النفايات والتجهيز أعلى من مناطق التعبئة والنظافة.",
+                    "إيقاف جميع أنظمة التهوية والتكييف أثناء العمل في صالات التعبئة."
+                ],
+                correct: 0,
+                hint: "الضغط الموجب (Positive Pressure) في المناطق النظيفة يمنع دخول الهواء المحمل بالميكروبات من المناطق الأقل نظافة."
+            },
+            {
+                question: "كيف تنتقل بكتيريا السالمونيلا (Salmonella) غالباً إلى اللحوم والدواجن الطازجة أثناء عملية الإعداد؟",
+                options: [
+                    "عبر تكثف بخار الماء الناتج من الغلايات على أجزاء السقف بالمجزر.",
+                    "عن طريق نمو الفطريات على الأكياس العازلة أثناء التخزين.",
+                    "من خلال استخدام غاز النيتروجين غير النقية في خطوط التعبئة.",
+                    "نتيجة ملامسة محتويات أمعاء الحيوان المذبوح لجسم الذبيحة أثناء الذبح والتقطيع."
+                ],
+                correct: 3,
+                hint: "السالمونيلا تعيش طبيعياً في أمعاء الحيوانات والدواجن، وتتلوث الذبائح عند حدوث أي خطأ أثاء عملية التفريغ والتقطيع."
+            },
+
+            {
+                question: "ما الفرق الجوهري بين برامج المتطلبات الأولية (PRPs) ونظام الـ HACCP في إدارة الخطر البيولوجي؟",
+                options: [
+                    "الـ PRPs تُعنى فقط بإدارة المبيعات، بينما الـ HACCP يركز على صيانة المباني الخارجية.",
+                    "لا يوجد أي فرق بين المصطلحين وهما يؤديان نفس الوظيفة بأسماء مختلفة.",
+                    "الـ PRPs تضع الأساس البيئي والتنظيمي العام، بينما يحدد الـ HACCP نقاط تحكم حرجة (CCPs) للقضاء على الخطر أو تخفيضه لمستوى آمن.",
+                    "نظام الـ HACCP يحل محل جميع برامج النظافة الشخصية والتطهير ويلغي الحاجة لها."
+                ],
+                correct: 2,
+                hint: "الـ PRPs هي البنية التحتية الوقائية، بينما الـ HACCP هو النظام الذي يحلل ويستهدف مخاطر محددة في الخطوات التصنيعية الحيوية."
+            },
+            {
+                question: "ما الوثيقة المعتمدة التي تُثبت صحياً خلو بيئة التصنيع والأسطح وأيدي العاملين من التلوث البيولوجي أمام المراجعين؟",
+                options: [
+                    "سجلات نتائج المسحات البيئية (Environmental Swabs) للمعدات والأيدي والهواء.",
+                    "فواتير شراء خامات ومواد التغليف من الموردين.",
+                    "تقارير صيانة الموازين والأجهزة الإلكترونية بالمختبر.",
+                    "كشوف حضور وغياب العاملين اليومية في الورديات."
+                ],
+                correct: 0,
+                hint: "المسحات البيئية الميكروبيولوجية هي الدليل العلمي القاطع على فاعلية عمليات التنظيف والتطهير والممارسات الصحية."
+            },
+            {
+                question: "أي الممارسات التالية تُعتبر مجرمة صحياً وتتسبب في تلوث متبادل (Cross-Contamination) بيولوجي مباشر؟",
+                options: [
+                    "فصل مسارات حركة النفايات عن مسارات دخول واستلام المواد الخام.",
+                    "استخدام نفس السكين لتقطيع الدواجن النيئة ثم تقطيع الخضروات الجاهزة دون غسيل وتطهير.",
+                    "ارتداء الملابس الواقية وغسيل الأيدي عند الدخول لصالة الإنتاج.",
+                    "استخدام مسحات بيئية دورية للاطمئنان على نظافة السطوح الملامسة."
+                ],
+                correct: 1,
+                hint: "استخدام الأدوات المشتركة بين المواد النيئة الغنية بكتيرياً والمواد الجاهزة للأكل ينقل الميكروبات فوراً وبشكل مباشر."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 8) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-award text-5xl"></i>`;
+                resultTitle.innerText = "ممتاز جداً! أداء استثنائي 👏";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "أظهرت استيعاباً کاملاً لمفاهيم التحكم في الخطر البيولوجي، أنواع البكتيريا والفيروسات، الأغشية الحيوية Biofilms، وتطبيق معايير السيطرة والتوثيق!";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت التقييم بنجاح!";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "يمكنك مراجعة إجاباتك التفصيلية أدناه لتأكيد المفاهيم والمصطلحات التي تحتاج لإعادة تذكرها.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

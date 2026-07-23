@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Steps Academy - اختبار الدفاع عن الغذاء ومكافحة الغش الغذائي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Arabic Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#48a7ca',
+                            cyanDark: '#338cae',
+                            navy: '#123c7b',
+                            navyDark: '#0b2652',
+                            lightBg: '#f4f8fb'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f8fb;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-brand-cyan/20 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-navy to-brand-cyan rounded-xl flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-brand-navy tracking-tight">Quality Steps</h1>
+                    <p class="text-xs text-brand-cyan font-bold">الدفاع عن الغذاء والغش الغذائي (Food Defense & Food Fraud)</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-graduation-cap text-brand-cyan ml-2"></i>
+                <span>د. إبراهيم البلتاجي</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div class="w-20 h-20 bg-brand-navy/10 text-brand-navy rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-user-shield text-4xl"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-brand-navy mb-3">
+                اختبار المحاضرة الأخير: الدفاع عن الغذاء والغش الغذائي
+            </h2>
+            <p class="text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto text-sm md:text-base">
+                أهلاً بك في التقييم الشامل للدرس الأخير من كورس برامج المتطلبات الأولية (PRPs)! تم إعداد هذا التقييم في <span class="font-bold text-brand-navy">20 سؤالاً تفاعلياً</span> لتغطية الفروق بين المصطلحات الأربعة، المنهجيات العالمية (TACCP/VACCP/CARVER/SSF)، خطوات التقييم السبع، مصفوفة المخاطر، وإجراءات التخفيف.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-right max-w-lg mx-auto">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-list-check text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">عدد الأسئلة</p>
+                        <p class="font-bold text-slate-800">20 سؤالاً مكثفاً</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center space-x-3 space-x-reverse">
+                    <i class="fa-solid fa-award text-brand-cyan text-xl"></i>
+                    <div>
+                        <p class="text-xs text-slate-500">نطاق الاختبار</p>
+                        <p class="font-bold text-slate-800">مواصفات ISO / FSSC / BRC / PAS 96</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full md:w-auto px-10 py-4 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                ابدأ الاختبار الشامل الآن <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Progress Bar & Score Info -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-6">
+                <div class="flex justify-between items-center mb-2 text-sm font-bold text-brand-navy">
+                    <span id="question-number-text">السؤال 1 من 20</span>
+                    <span id="score-tracker" class="text-brand-cyan"><i class="fa-solid fa-star ml-1"></i> النتيجة: 0</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-brand-cyan to-brand-navy h-2.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 animate-fade-in">
+                <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                    <!-- Dynamic Question Text -->
+                </h3>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Answer Options -->
+                </div>
+
+                <!-- Hint Button & Box -->
+                <div class="mb-4">
+                    <button id="hint-btn" onclick="toggleHint()" class="text-xs text-brand-cyan hover:text-brand-navy font-bold flex items-center transition">
+                        <i class="fa-regular fa-lightbulb ml-1"></i> هل تحتاج إلى تلميح توضيحي؟
+                    </button>
+                    <div id="hint-box" class="hidden mt-2 p-3 bg-amber-50 border-r-4 border-amber-400 text-amber-800 text-xs rounded-l-lg">
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-md transition flex items-center mr-auto">
+                        <span>السؤال التالي</span> <i class="fa-solid fa-arrow-left ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-10 text-center animate-fade-in">
+            <div id="result-icon-container" class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- Dynamic Icon -->
+            </div>
+
+            <h2 id="result-title" class="text-2xl md:text-3xl font-extrabold mb-2"></h2>
+            <p id="result-subtitle" class="text-slate-600 text-sm mb-6"></p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 inline-block w-full max-w-sm">
+                <p class="text-sm text-slate-500 mb-1">النتيجة النهائية للاختبار الشامل</p>
+                <div class="text-4xl font-black text-brand-navy mb-2" id="final-score-text">0 / 20</div>
+            </div>
+
+            <div id="review-container" class="text-right mb-8 space-y-4">
+                <h4 class="font-bold text-slate-800 border-b pb-2 text-lg">مراجعة الإجابات والحلول التفصيلية:</h4>
+                <div id="review-list" class="space-y-3">
+                    <!-- Review Items -->
+                </div>
+            </div>
+
+            <button onclick="restartQuiz()" class="px-8 py-3.5 bg-brand-navy hover:bg-brand-navyDark text-white font-bold rounded-xl shadow-lg transition">
+                <i class="fa-solid fa-rotate-right ml-2"></i> إعادة الاختبار
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>
+                جميع الحقوق محفوظة © <span class="font-bold text-brand-navy">Quality Steps</span> - د. إبراهيم البلتاجي
+            </div>
+            <div class="flex space-x-3 space-x-reverse text-brand-cyan">
+                <span><i class="fa-solid fa-envelope ml-1"></i> qualitysteps2@gmail.com</span>
+                <span><i class="fa-solid fa-phone ml-1"></i> +20 1153246680</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const quizData = [
+            {
+                question: "ما الفارق المفهومي الجوهري بين مخاطر «سلامة الغذاء Food Safety» ومخاطر «الدفاع عن الغذاء Food Defense»؟",
+                options: [
+                    "سلامة الغذاء تهدف للربح المادي، بينما الدفاع عن الغذاء يهدف لحماية المستهلك.",
+                    "سلامة الغذاء تتعامل مع المخاطر غير المتعمدة (الحوادث والتقصير)، بينما الدفاع عن الغذاء يتعامل مع الأفعال التخريبية المتعمدة.",
+                    "سلامة الغذاء تركز فقط على المبيعات والتغليف، بينما الدفاع عن الغذاء يركز على الطعم واللون.",
+                    "لا يوجد فارق بينهما حيث يُدار الكلان بواسطة برامج النظافة الشخصية فقط."
+                ],
+                correct: 1,
+                hint: "الفرق الأساسي هو النية (Intent)؛ فسلامة الغذاء تعالج الأخطاء السهو أو غير المقصودة، بينما الدفاع عن الغذاء يتعامل مع وجود شخص قاصد ومخطط للإيذاء."
+            },
+            {
+                question: "كل من الغش الغذائي (Food Fraud) والدفاع عن الغذاء (Food Defense) يُعدان فعلين متعمدين. ما الذي يفرق بينهما بالأساس؟",
+                options: [
+                    "الدافع والنية؛ فالغش الغذائي دافعه الربح المادي الاقتصادي فقط، بينما الدفاع عن الغذاء دافعه الإضرار بالشركة أو المنتج أو المستهلك.",
+                    "أن الغش الغذائي يحدث دائماً من خارج المصنع، بينما الدفاع عن الغذاء يحدث دائماً من الداخل.",
+                    "أن الدفاع عن الغذاء لا يسبب أي خسائر مالية للمنشأة على عكس الغش الغذائي.",
+                    "أن الغش الغذائي يطبق في مصانع الألبان فقط بينما الدفاع عن الغذاء يطبق في مصانع اللحوم."
+                ],
+                correct: 0,
+                hint: "النصاب في الغش الغذائي يهدف لجمع المال دون نية مسبقة للأذية، بينما المخرب في الدفاع عن الغذاء يهدف للإيذاء أو الانتقام أو التخريب."
+            },
+            {
+                question: "إذا لاحظ العميل أن علبة الزبادي طعمها أكثر حموضة ولونها غامق قليلاً دون أن تسبب أي ضرر صحي، فكيف يُصنف هذا الخلل؟",
+                options: [
+                    "مشكلة سلامة غذاء خطيرة (Food Safety Issue).",
+                    "عمل تخريبي يتعامد مع الدفاع عن الغذاء (Food Defense Threat).",
+                    "مشكلة جودة غذاء (Food Quality Issue) تؤثر تجارياً على رضا العميل فقط.",
+                    "حالة غش غذائي اقتصادي (Food Fraud)."
+                ],
+                correct: 2,
+                hint: "جودة الغذاء تتعلق بمدى رضا العميل عن الصفات الحسية والتغذوية، وهي لا تؤذي الصحة لكنها تؤثر تجارياً."
+            },
+            {
+                question: "كيف يمكن أن يتحول «الغش الغذائي» (الذي يهدف للربح فقط) إلى خطر صحي داهم على حياة المستهلكين؟",
+                options: [
+                    "عندما يتم غش المنتج بنشا أو جلوكوز وكتابة «خالي من السكر» مما يسبب صدمة سكر لمريض السكري، أو عند استخدام صبغات رخيصة مسرطنة.",
+                    "عند استخدام أختام أمنية غير مطابقة على شاحنات النقل.",
+                    "عندما يقوم المورد بتخفيض أسعار المواد الخام بنسبة كبيرة.",
+                    "عندما يقرر مدير المشتريات تغيير المورد المعتمد بمورد آخر معتمد."
+                ],
+                correct: 0,
+                hint: "رغم أن الهدف هو التوفير المالي، إلا أن المكون المغشوش أو البيانات المضللة قد تكون قاتلة لفئات معينة مثل مرضى السكر أو الحساسية."
+            },
+            {
+                question: "ما هي منهجية «TACCP» وما هو أول ظهور رسمي لمصطلحها في المواصفات القياسية؟",
+                options: [
+                    "تقييم نقاط الضعف ونقاط التحكم الحرجة، وظهرت في GFSI عام 2012.",
+                    "تقييم التهديدات ونقاط التحكم الحرجة (Threat Assessment)، وظهرت في المواصفة البريطانية PAS 96 عام 2010.",
+                    "استبيان مكون من 50 سؤالاً أمريكياً للغش الغذائي.",
+                    "طريقة مخصصة لحساب أرباح المبيعات السنوية."
+                ],
+                correct: 1,
+                hint: "TACCP تركز على تقييم التهديدات الأمنية الموجهة للدفاع عن الغذاء وظهرت لأول مرة في PAS 96 سنة 2010."
+            },
+            {
+                question: "ما هي منهجية «VACCP» وفيم تُستخدم بالأساس؟",
+                options: [
+                    "تقييم نقاط الضعف ونقاط التحكم الحرجة (Vulnerability Assessment)، وتستخدم لمكافحة الغش الغذائي (Food Fraud).",
+                    "تقييم الكاميرات والبوابات الأمنية وتستخدم لحماية المخازن.",
+                    "تقييم المخاطر البيولوجية في خط البسترة وتستخدم بنظام الـ HACCP.",
+                    "منهجية أمريكية تقسم المصنع إلى 8 أجزاء لحساب شدة التأثير."
+                ],
+                correct: 0,
+                hint: "VACCP تبدأ بحرف V لتعبر عن Vulnerability (نقاط الضعف التي يمكن استغلالها للغش التجاري) وظهرت مع GFSI عام 2012."
+            },
+            {
+                question: "كيف تعمل منهجية «CARVER + Shock» الأمريكية في تقييم مخاطر الدفاع عن الغذاء؟",
+                options: [
+                    "تقوم بإجراء تحليل بيولوجي شامل لجميع الشاحنات الواردة.",
+                    "تقسم المنشأة إلى أجزاء (استلام، تصنيع، تغليف...) وتقيم التهديدات في كل جزء من 1 إلى 10 بناءً على 8 معايير.",
+                    "تعتمد على توزيع 50 سؤالاً استبيانياً على الموردين والموزعين.",
+                    "تستبعد الموظفين الساخطين وتكتفي بمراجعة الكاميرات فقط."
+                ],
+                correct: 1,
+                hint: "منهجية CARVER تقوم بتفتيت المنشأة إلى قطاعات وتقييم النقاط الساخنة بناءً على معايير محددة بدرجات من 1 إلى 10."
+            },
+            {
+                question: "أثناء تشكيل فريق الدفاع عن الغذاء (Food Defense Team)، ما الدور الجوهري لمدير الموارد البشرية (HR)؟",
+                options: [
+                    "مراجعة وتحديث أختام شاحنات النقل الخارجية.",
+                    "فحص التحاليل المعملية للزيوت والمواد الخام.",
+                    "تقييم سلوكيات العاملين، مراجعة الصحيفة الجنائية (الفيش والتشبيه)، والتعرف على الموظفين الساخطين المحتملين.",
+                    "إدارة اختراق الأنظمة البرمجية ومكافحة الأمن السيبراني."
+                ],
+                correct: 2,
+                hint: "مسؤول الـ HR هو الأقدر على معرفة سلوكيات العمالة، التأكد من سوابقهم، ورصد أي موظف تعرض لجزاءات أو لديه دافع للانتقام."
+            },
+            {
+                question: "عند تشكيل فريق مكافحة الغش الغذائي (VACCP)، لماذا يُعد مدير المشتريات (Procurement) عضواً رئيسياً لا غنى عنه؟",
+                options: [
+                    "لأنه المسؤول عن تركيب كاميرات المراقبة وتأمين السور.",
+                    "لأنه دراية تامة بالسوق، أسعار المواد الخام، الموردين، والتقلبات الاقتصادية التي قد تشجع على الغش.",
+                    "لأنه يستطيع إجراء فحوصات البسترة المعملية بنفسه.",
+                    "لأنه يقوم بالرد على استفسارات وسائل الإعلام أثناء الأزمات."
+                ],
+                correct: 1,
+                hint: "الغش الغذائي دافعه اقتصادي؛ ومدير المشتريات هو الخبير بفرص السوق، ارتفاع الأسعار الشديد، وسلسلة التوريد."
+            },
+            {
+                question: "ما الشرط التوثيقي الواجب توفره عند كتابة أسماء أعضاء فريق سلامة الغذاء (المسؤول عن PRPs وTACCP وVACCP وHACCP)؟",
+                options: [
+                    "تضمين أعضاء من خارج الدولة فقط.",
+                    "توثيق اسم كل عضو ودوره المباشر، بالإضافة إلى تحديد نائب له (Deputy) في حالة غيابه.",
+                    "الاكتفاء بكتابة المسمى الوظيفي بدون ذكر الأسماء الشخصية.",
+                    "تعديل القائمة يومياً قبل بداية كل وردية عمل."
+                ],
+                correct: 1,
+                hint: "لتضارب الإجازات والغياب، تشترط المواصفات كتابة اسم العضو ودوره مع تعيين نائب محدد ومؤهل للقيام بمهامه."
+            },
+            {
+                question: "لماذا نلجأ لرسم خريطة التدفق (Flow Diagram) عند إعداد خطة الدفاع عن الغذاء (TACCP)؟",
+                options: [
+                    "لحساب التكاليف المالية لكل مرحلة إنتاجية.",
+                    "لتتبع المنتجات المباعة لدى المستهلك النهائي فقط.",
+                    "لتتبع المنتج من الاستلام حتى الشحن، ومسح كل مرحلة لمعرفة مدى سهولة الوصول للمادة وتلوثها عمداً.",
+                    "لإلغاء الحاجة لكاميرات المراقبة في مخازن التبريد."
+                ],
+                correct: 2,
+                hint: "خريطة التدفق تضمن عدم نسيان أي خطوة (استلام، تخزين، بسترة، تعبئة...) وفحص ثغرات الوصول الحر للمنتج في كل خطوة."
+            },
+            {
+                question: "أي من العوامل التالية يرفع من «فرصة ونسبة خطر الغش الغذائي» في مادة خام معينة؟",
+                options: [
+                    "شراء المادة من المصنع المنتج مباشرة بدون أي وسطاء.",
+                    "طول سلسلة التوريد (كثرة الوسطاء)، غلاء سعر المادة وشحها، وصعوبة اكتشاف الغش معملياً.",
+                    "وفرة المادة في السوق وانخفاض سعرها الشديد.",
+                    "وجود تحاليل معملية سريعة وسهلة لاكتشاف غش المادة عند الاستلام."
+                ],
+                correct: 1,
+                hint: "كلما طالت سلسلة التوريد وكثر الوسطاء وزاد سعر المادة الخام وصعب كشف غشها، أصبحت مغرية جداً للنصابين."
+            },
+            {
+                question: "ما الذي نصت عليه التعديلات الحديثة في ملحق مواصفة ISO 22002-100:2025 (البندان B7 و B8) لحماية الشركة من الغش؟",
+                options: [
+                    "إلزامية الاستغناء عن العمالة الموسيمية كلياً.",
+                    "B7: إدارة فائض المنتجات لمنع بيعها في قنوات غير مصرح بها، وB8: التحقق من بيانات الملصق لمنع التضليل وتزوير التواريخ.",
+                    "الاعتماد على تحاليل المعامل الخارجية فقط دون الحاجة لجرد المخازن.",
+                    "ترك المنتجات المرفوضة في الممرات لسهولة التخلص منها."
+                ],
+                correct: 1,
+                hint: "البند B7 يمنع تسريب الفائض أو المرفوض للسوق السوداء باسم الشركة، وB8 يتأكد من صحة الادعاءات (مثل خالي من الجلوتين/عضوي) والتواريخ."
+            },
+            {
+                question: "في مصفوفة تقييم المخاطر، كيف يتم حساب «درجة الخطورة Risk Score» لمخاطر TASP أو FASP؟",
+                options: [
+                    "جمع شدة التأثير + احتمالية الحدوث.",
+                    "ضرب شدة التأثير (Severity) × احتمالية الحدوث (Likelihood).",
+                    "قسمة عدد الكاميرات على عدد العمالة.",
+                    "حاصل طرح الخسائر المالية من ميزانية الشركة."
+                ],
+                correct: 1,
+                hint: "درجة الخطورة هي حاصل ضرب المعيارين (شدة التأثير × احتمالية الحدوث) لتحديد مكان الخطر بالمصفوفة."
+            },
+            {
+                question: "عند تقييم «احتمالية الحدوث» في نظام TACCP (الدفاع عن الغذاء)، ما هي الأسئلة المحورية التي يطرحها الفريق؟",
+                options: [
+                    "هل هناك مكسب مادي مغري للمورد عند خلط هذه المادة؟",
+                    "هل هناك دافع للإيذاء (انتقام/تخريب)، وهل التهديد سهل التنفيذ أم أن الإجراءات الأمنية القائمة تمنعه؟",
+                    "هل المادة الخام متوفرة بكثرة في السوق المحلي؟",
+                    "ما هي نسبة السكر والبروتين المكتوبة على العبوة الخارجية؟"
+                ],
+                correct: 1,
+                hint: "في TASP نفكر بعقلية المهاجم/المخرب: هل يوجد دافع (انتقام/سياسة)، وهل توجد ثغرة أمنية تتيح له التسلل والتنفيذ؟"
+            },
+            {
+                question: "لماذا تُسمى إجراءات التحكم في خطط TACCP و VACCP بـ «إجراءات التخفيف Mitigation Measures» وليس CCP كما في الـ HACCP؟",
+                options: [
+                    "لأن خطط الدفاع والغش تتعامل مع سلوك ونيات بشرية لا يمكن منعها بنسبة 100%، بل نضع عوائق لتصعيب الفعل وصرف النظر عنه.",
+                    "لأن التخفيف كلمة أسهل في الكتابة من نقطة التحكم الحرجة.",
+                    "لأن هذه الإجراءات لا تكلف المصنع أي مبالغ مالية.",
+                    "لأن مواصفة ISO تمنع استخدام كلمة تحكم خارج المعامل."
+                ],
+                correct: 0,
+                hint: "الإنسان المخرب أو النصاب قد يبتكر طرقاً جديدة للتحايل، لذا نضع إجراءات تخفيف (Mitigation) لتقليل الفرص قدر الإمكان عكس المخاطر الفيزيائية/البيولوجية المقاسة."
+            },
+            {
+                question: "أي مما يلي يُعتبر من «إجراءات التخفيف» الفعالة والمباشرة الخاصة بالدفاع عن الغذاء (Food Defense)؟",
+                options: [
+                    "طلب شهادة تحليل الزيوت النباتية من المورد مع كل شحنة.",
+                    "تأمين الأسوار بسلك شائك، تركيز كاميرات المراقبة، إغلاق خزانات المياه بالرصاص، وسجل تسليم الزوار.",
+                    "عمل تحليل نسبة السكر بصفة دورية للمنتجات النهائية.",
+                    "الاستعانة بوسطاء متعددين في شراء المواد الخام."
+                ],
+                correct: 1,
+                hint: "تأمين المحيط الخارجي، الكاميرات، إغلاق الخزانات، والتحكم بالدخول هي إجراءات أمنية فيصلية لمنع التخريب والوصول الحر."
+            },
+            {
+                question: "أي مما يلي يُعد مثالاً تطبيقياً لإجراءات التخفيف في خطة «مكافحة الغش الغذائي Food Fraud»؟",
+                options: [
+                    "تركيب فيش وتشبيه للموظفين الجدد في قسم الموارد البشرية.",
+                    "وضع أختام أمنية على الشاحنات، اعتماد الموردين وتقليل الوسطاء، وطلب شهادة التحليل (COA) وفحص المعامل الخارجية.",
+                    "تفتيش حقائب العمال عند الخروج للراحة اليومية.",
+                    "تركيب سلك شائك فوق أسوار الشركة الخارجية."
+                ],
+                correct: 1,
+                hint: "مكافحة الغش تعتمد على تأمين سلاسل التوريد، فحص الشحنات، الاعتماد الصارم للموردين، والتحاليل المعملية الموثوقة."
+            },
+            {
+                question: "ما الهدف الأساسي من خطوة «التحقق Verification» في خطتي الدفاع عن الغذاء ومكافحة الغش؟",
+                options: [
+                    "إعادة تقييم أسعار المنتجات المبيعة في السوق.",
+                    "التأكد ميدانياً وبشكل دوري من أن إجراءات التخفيف المكتوبة تُنفذ بالفعل على أرض الواقع (مثل فحص سلامة الكاميرات والأختام).",
+                    "استبدال فريق سلامة الغذاء بفريق أمن خارجي.",
+                    "إلغاء سجلات الزوار لسرعة حركة الدخول والخروج."
+                ],
+                correct: 1,
+                hint: "التحقق يضمن أن خطة الدفاع ليست مجرد أوراق في الأدراج، بل إجراءات مفعّلة (الكاميرات تعمل، الأبواب مغلقة، والأختام تسجل)."
+            },
+            {
+                question: "عند حدوث أزمة تخريب أو اكتشاف حادثة غش كبرى، من الذي يقود إدارة الأزمة وحسابات السحب والاستدعاء (Recall)؟",
+                options: [
+                    "موظف الاستقبال بالمصنع بشكل فردي.",
+                    "فريق إدارة الأزمات المتعدد التخصصات (يشمل مدير سلامة الغذاء، الإنتاج، المشتريات، العلاقات العامة، والإنقاذ القانوني).",
+                    "المورد المتسبب في المشكلة فقط.",
+                    "سائق شاحنة النقل الخارجية."
+                ],
+                correct: 1,
+                hint: "إدارة الأزمات تتطلب استجابة فورية من فريق القيادة (Crisis Management Team) المجهز قانونياً وإعلامياً وفنياً لإغلاق الثغرة والسحب."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const questionNumberText = document.getElementById('question-number-text');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        const hintBtn = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            nextBtn.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            
+            const q = quizData[currentQuestion];
+            
+            questionNumberText.innerText = `السؤال ${currentQuestion + 1} من ${quizData.length}`;
+            scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+            
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            questionText.innerText = q.question;
+            hintText.innerText = q.hint;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-right p-4 rounded-xl border-2 border-slate-200 hover:border-brand-cyan hover:bg-slate-50 transition flex items-center justify-between group font-medium text-slate-700 mb-2 text-sm md:text-base";
+                optBtn.onclick = () => selectAnswer(idx);
+                optBtn.innerHTML = `
+                    <span class="flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center ml-3 group-hover:bg-brand-cyan group-hover:text-white transition shrink-0">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span>${opt}</span>
+                    </span>
+                    <i class="fa-regular fa-circle text-slate-300 group-hover:text-brand-cyan shrink-0 ml-1"></i>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function toggleHint() {
+            hintBox.classList.toggle('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const q = quizData[currentQuestion];
+            const buttons = optionsContainer.children;
+            
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-brand-cyan', 'hover:bg-slate-50');
+                btn.classList.add('cursor-not-allowed');
+            }
+
+            const isCorrect = (selectedIndex === q.correct);
+            
+            userAnswers.push({
+                question: q.question,
+                selected: selectedIndex,
+                correct: q.correct,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                scoreTracker.innerHTML = `<i class="fa-solid fa-star ml-1"></i> النتيجة: ${score}`;
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            } else {
+                buttons[selectedIndex].className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[selectedIndex].querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-1";
+                
+                buttons[q.correct].className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-emerald-900 font-bold flex items-center justify-between mb-2 text-sm md:text-base";
+                buttons[q.correct].querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-1";
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('final-score-text').innerText = `${score} / ${quizData.length}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultSubtitle = document.getElementById('result-subtitle');
+
+            if (score >= 16) {
+                iconContainer.className = "w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-trophy text-5xl"></i>`;
+                resultTitle.innerText = "ممتاز جداً! استيعاب كامل واحترافي 👏";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-emerald-700 mb-2";
+                resultSubtitle.innerText = "تهانينا! أظهرت فهماً شاملاً وعميقاً لمفاهيم الدفاع عن الغذاء، مكافحة الغش، المنهجيات العالمية (TACCP/VACCP)، وتحديثات مواصفة ISO 22002-100!";
+            } else if (score >= 12) {
+                iconContainer.className = "w-24 h-24 bg-cyan-100 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-medal text-5xl"></i>`;
+                resultTitle.innerText = "أداء جيد جداً! محاولة موفقة 👍";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-brand-navy mb-2";
+                resultSubtitle.innerText = "لقد اجتزت الاختبار بنجاح. يمكنك مراجعة الأسئلة التي أخطأت بها بالأسفل لترسيخ كافة الفروق الدقيقة.";
+            } else {
+                iconContainer.className = "w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6";
+                iconContainer.innerHTML = `<i class="fa-solid fa-book-open-reader text-5xl"></i>`;
+                resultTitle.innerText = "أكملت الاختبار! نوصي بمراجعة المحاضرة 📖";
+                resultTitle.className = "text-2xl md:text-3xl font-extrabold text-amber-800 mb-2";
+                resultSubtitle.innerText = "نقاط الدفاع عن الغذاء والغش الغذائي مليئة بالفروق الدقيقة. راجع الشرح وإجاباتك التفصيلية بالأسفل للوصول للدرجة النهائية.";
+            }
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+            userAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-xl border text-sm ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-1">
+                        ${idx + 1}. ${ans.question}
+                    </div>
+                    <div class="flex items-center text-xs mb-1 ${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'}">
+                        <i class="fa-solid ${ans.isCorrect ? 'fa-check' : 'fa-xmark'} ml-1"></i>
+                        <span>إجابتك: ${quizData[idx].options[ans.selected]}</span>
+                    </div>
+                    ${!ans.isCorrect ? `
+                    <div class="text-xs text-emerald-800 font-bold mt-1">
+                        <i class="fa-solid fa-circle-check ml-1"></i> الإجابة الصحيحة: ${quizData[idx].options[ans.correct]}
+                    </div>` : ''}
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function restartQuiz() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
